@@ -182,13 +182,13 @@ const state = {
         type: "expression",
         id: "28",
         color: "#2d70b3",
-        latex: "C_{3}=3\\cdot C",
+        latex: "C_{3}=i_{1}\\cdot C",
       },
       {
         type: "expression",
         id: "29",
         color: "#388c46",
-        latex: "C_{4}=4\\cdot C",
+        latex: "C_{4}=i_{2}\\cdot C",
       },
       {
         type: "expression",
@@ -199,13 +199,25 @@ const state = {
         lineStyle: "DASHED",
         lineWidth: "2",
       },
+      {
+        type: "expression",
+        id: "32",
+        color: "#c74440",
+        latex: "i_{1}=3",
+      },
+      {
+        type: "expression",
+        id: "33",
+        color: "#2d70b3",
+        latex: "i_{2}=4",
+      },
     ],
   },
 };
 
 let hoverVisible = false;
 let xList = [];
-const SNAP_DISTANCE = 0.25;
+const SNAP_DISTANCE = 0.15;
 const NEAR_DISTANCE = 0.15;
 
 const [
@@ -218,6 +230,26 @@ const [
 calculator.setState(state);
 calculator.setDefaultState(state);
 const calculatorRect = elt.getBoundingClientRect();
+
+const intervalInput1 = document.createElement("input");
+const intervalInput2 = document.createElement("input");
+
+for (input of [intervalInput1, intervalInput2]) {
+  input.style.position = "absolute";
+  input.style.top = "80%";
+  input.style["font-size"] = "2em";
+  input.style.width = "1em";
+  input.style.padding = ".25em";
+  input.maxlength = "1";
+}
+
+intervalInput1.style.left = "5%";
+intervalInput1.style.top = "31%";
+intervalInput2.style.left = "5%";
+intervalInput2.style.top = "44%";
+
+elt.appendChild(intervalInput1);
+elt.appendChild(intervalInput2);
 
 const show = (...ids) => {
   ids.forEach((id) => {
@@ -299,4 +331,25 @@ elt.addEventListener("mouseup", (e) => {
 
     xList.push(snapX(mousePos.x));
   }
+});
+
+intervalInput1.addEventListener("change", (e) => {
+  const int = parseInt(e.target.value);
+  calculator.setExpression({
+    id: "32",
+    latex: `i_{1}=${int}`,
+  });
+});
+
+intervalInput2.addEventListener("change", (e) => {
+  const int = parseInt(e.target.value);
+  calculator.setExpression({
+    id: "33",
+    latex: `i_{2}=${int}`,
+  });
+});
+
+calculator.observeEvent("graphReset", () => {
+  intervalInput1.value = "";
+  intervalInput2.value = "";
 });
