@@ -4,6 +4,7 @@ const options = {
   zoomButtons: false,
   showResetButtonOnGraphpaper: true,
   lockViewport: true,
+  pointsOfInterest: false,
 };
 
 const elt = document.getElementById("calculator");
