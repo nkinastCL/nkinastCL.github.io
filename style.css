@@ -151,12 +151,13 @@ h3 {
 }
 body {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   width: calc(100% - 1rem);
-  max-width: var(--max-body-width);
+  /* max-width: var(--max-body-width); */
   min-height: 100%;
   margin: 0 auto;
   overflow-wrap: break-word;
+  padding-left: 1em;
 }
 main {
   flex-grow: 1;
