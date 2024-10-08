@@ -1,12 +1,13 @@
 const options = {
   settingsMenu: false,
-  expressions: false,
+  expressions: true,
   zoomButtons: false,
   showResetButtonOnGraphpaper: true,
   lockViewport: false,
   pointsOfInterest: false,
-  authorFeatures: false,
+  authorFeatures: true,
   trace: false,
+  actions: true,
 };
 
 const elt = document.getElementById("calculator");
@@ -17,10 +18,10 @@ const state = {
   randomSeed: "9c3869b862c7bbb84580636371a8fd20",
   graph: {
     viewport: {
-      xmin: -17.243560091328398,
-      ymin: -5.497976488005202,
-      xmax: 11.530664428401224,
-      ymax: 8.962019702375276,
+      xmin: -10.437459188826717,
+      ymin: -7.9216047383938974,
+      xmax: 13.551798623673294,
+      ymax: 9.403510536846335,
     },
     showGrid: false,
     showXAxis: false,
@@ -47,28 +48,28 @@ const state = {
         type: "expression",
         id: "2",
         color: "#000000",
-        latex: "A=\\left(-2.1,0.26\\right)",
+        latex: "A=\\left(0,0\\right)",
         hidden: true,
       },
       {
         type: "expression",
         id: "3",
         color: "#000000",
-        latex: "B=\\left(1.9,0.26\\right)",
+        latex: "B=\\left(4,0\\right)",
         hidden: true,
       },
       {
         type: "expression",
         id: "4",
         color: "#000000",
-        latex: "C=\\left(1.9,3.26\\right)",
+        latex: "C=\\left(4,3\\right)",
         hidden: true,
       },
       {
         type: "expression",
         id: "5",
         color: "#000000",
-        latex: "D=\\left(-0.1,3.26\\right)",
+        latex: "D=\\left(2,3\\right)",
         hidden: true,
       },
       {
@@ -79,115 +80,68 @@ const state = {
       },
       {
         type: "expression",
-        id: "7",
-        color: "#6042a6",
-        latex:
-          "P_{rot}=\\operatorname{rotate}\\left(P,R_{otcenter},a_{1}\\right)",
-      },
-      {
-        type: "expression",
-        id: "35",
-        color: "#c74440",
-        latex: "R_{otcenter}=\\left(-3.48,0.34\\right)",
-        pointSize: "12",
-        movablePointSize: "12",
-      },
-      {
-        type: "expression",
-        id: "18",
-        color: "#c74440",
-        latex:
-          "R=\\operatorname{circle}\\left(R_{otcenter},\\operatorname{distance}\\left(R_{otcenter},B\\right)\\right)",
-        hidden: true,
-        lines: false,
-      },
-      {
-        type: "expression",
-        id: "25",
-        color: "#6042a6",
-        latex: "X=\\operatorname{glider}\\left(R,0.998\\right)",
-        pointSize: "12",
-        movablePointSize: "12",
-      },
-      {
-        type: "expression",
-        id: "26",
-        color: "#c74440",
-        latex:
-          "a=\\left\\{X.y>f\\left(X.x\\right):\\operatorname{angle}\\left(X,R_{otcenter},B\\right),360-\\operatorname{angle}\\left(X,R_{otcenter},B\\right)\\right\\}",
-      },
-      {
-        type: "expression",
-        id: "46",
+        id: "63",
         color: "#2d70b3",
-        latex:
-          "f\\left(x\\right)=\\left(\\frac{B.y-R_{otcenter}.y}{B.x-R_{otcenter}.x}\\right)\\left(x-B.x\\right)+B.y",
-        hidden: true,
-      },
-      {
-        type: "expression",
-        id: "49",
-        color: "#000000",
-        latex:
-          "a_{1}=\\left\\{R_{otcenter}.x<B.x:a,\\left\\{X.y>f\\left(X.x\\right):360-\\operatorname{angle}\\left(X,R_{otcenter},B\\right),\\operatorname{angle}\\left(X,R_{otcenter},B\\right)\\right\\}\\right\\}",
-      },
-      {
-        type: "expression",
-        id: "52",
-        color: "#000000",
-        latex: "\\left(-2.98,8.22\\right)",
-        showLabel: true,
-        label:
-          "Drag the red point to set the center of rotation. Drag the purple point to rotate the polygon.",
-        hidden: true,
+        latex: "A_{1}=\\left(6.78,1.12\\right)",
         dragMode: "XY",
       },
       {
         type: "expression",
-        id: "53",
+        id: "64",
         color: "#388c46",
-        latex: "L=\\operatorname{vertices}\\left(P_{rot}\\right)",
-        hidden: true,
-        points: false,
-        dragMode: "NONE",
+        latex: "v=\\operatorname{vector}\\left(A,A_{1}\\right)",
       },
       {
         type: "expression",
-        id: "58",
-        color: "#000000",
-        latex: "A_{1}=L\\left[1\\right]",
-        label: "`A\\prime`",
-        hidden: true,
-        labelOrientation: "below_left",
+        id: "65",
+        color: "#6042a6",
+        latex: "P_{1}=\\operatorname{translate}\\left(P,t_{e}\\cdot v\\right)",
       },
       {
         type: "expression",
-        id: "59",
+        id: "66",
         color: "#000000",
-        latex: "B_{1}=L\\left[2\\right]",
-        label: "`B\\prime`",
-        hidden: true,
-        labelOrientation: "below_right",
+        latex: "t=1",
+        slider: {
+          hardMin: true,
+          hardMax: true,
+          loopMode: "PLAY_ONCE",
+          isPlaying: false,
+          min: "0",
+          max: "1",
+        },
       },
       {
         type: "expression",
-        id: "60",
-        color: "#000000",
-        latex: "C_{1}=L\\left[3\\right]",
-        label: "`C\\prime`",
-        hidden: true,
-        labelOrientation: "above_right",
+        id: "69",
+        color: "#388c46",
+        latex: "t_{e}=1-\\left(1-t\\right)^{3}",
       },
       {
         type: "expression",
-        id: "61",
+        id: "70",
         color: "#000000",
-        latex: "D_{1}=L\\left[4\\right]",
-        label: "`D\\prime`",
-        hidden: true,
-        labelOrientation: "above_left",
+        latex: "X=\\left(-4.98,5.58\\right)",
       },
+      {
+        type: "expression",
+        id: "71",
+        color: "#000000",
+        latex:
+          "B_{X}=\\operatorname{polygon}\\left(X,X+\\left(1,0\\right),X+\\left(1,1\\right),X+\\left(0,1\\right)\\right)",
+        clickableInfo: { enabled: true, latex: "p_{lay}" },
+      },
+      { type: "expression", id: "72", color: "#388c46", latex: "a=0" },
+      {
+        type: "expression",
+        id: "73",
+        color: "#c74440",
+        latex: "p_{lay}=a\\to\\left\\{a=0:1,0\\right\\}",
+      },
+      { type: "expression", id: "74", color: "#2d70b3" },
+      { type: "expression", id: "67", color: "#c74440" },
     ],
+    ticker: { open: true },
   },
   geometryToolbar: { toolbar: "custom" },
 };
@@ -195,8 +149,11 @@ const state = {
 calculator.setState(state);
 calculator.setDefaultState(state);
 
-const angle = calculator.HelperExpression({ latex: "X_{1}" });
-console.log(angle);
-angle.observe("numericValue", () => {
-  console.log(angle.numericValue);
+isAnimating = calculator.HelperExpression({ latex: "a" });
+
+isAnimating.observe("numericValue", () => {
+  if (isAnimating.numericValue === 1) {
+    calculator.setExpression({ id: "66", latex: "t=0", playing: true });
+    calculator.setExpression({ id: "72", latex: "a=0" });
+  }
 });
