@@ -7,6 +7,7 @@ const options = {
   pointsOfInterest: false,
   authorFeatures: true,
   trace: false,
+  colors: { "clp-blue": "#069ce1" },
 };
 const elt = document.getElementById("calculator");
 const calculator = Desmos.GraphingCalculator(elt, options);
@@ -166,7 +167,7 @@ const state = {
       {
         type: "expression",
         id: "31",
-        color: "black",
+        color: "clp-blue",
         latex: "x=d_{x}\\left\\{0<y<2\\right\\}",
         hidden: false,
         lineStyle: "DASHED",
@@ -218,7 +219,7 @@ const state = {
       {
         type: "expression",
         id: "40",
-        color: "#000000",
+        color: "clp-blue",
         latex: "\\left(d_{x},1\\right)",
         dragMode: "X",
       },
@@ -256,7 +257,7 @@ const state = {
       {
         type: "expression",
         id: "42",
-        color: "black",
+        color: "clp-blue",
         latex: "x=5\\left\\{0<y<2\\right\\}",
         hidden: false,
         lineStyle: "DASHED",
@@ -265,7 +266,7 @@ const state = {
       {
         type: "expression",
         id: "43",
-        color: "black",
+        color: "clp-blue",
         latex: "h_{over1a}=\\left(5,2\\right)",
         showLabel: true,
         label: " ",
@@ -278,7 +279,7 @@ const state = {
       {
         type: "expression",
         id: "44",
-        color: "black",
+        color: "clp-blue",
         latex: "h_{over2a}=\\left(5,0\\right)",
         showLabel: true,
         label: " ",
