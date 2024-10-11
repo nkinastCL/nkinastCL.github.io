@@ -9,6 +9,7 @@ const options = {
   trace: false,
   colors: { "clp-blue": "#069ce1" },
 };
+
 const elt = document.getElementById("calculator");
 const calculator = Desmos.GraphingCalculator(elt, options);
 
@@ -72,7 +73,7 @@ const state = {
         latex:
           "t_{opLineLabel}=\\left(-.5\\cdot t_{ickHeight},t_{opLineY}\\right)",
         showLabel: true,
-        label: "Blue Paint (oz.)",
+        label: "Blue Paint (oz)",
         hidden: true,
         labelOrientation: "left",
       },
@@ -84,7 +85,7 @@ const state = {
         latex:
           "b_{otLineLabel}=\\left(-.5\\cdot t_{ickHeight},b_{otLineY}\\right)",
         showLabel: true,
-        label: "Yellow Paint (oz.) ",
+        label: "Yellow Paint (oz) ",
         hidden: true,
         labelOrientation: "left",
       },
