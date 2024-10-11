@@ -3,9 +3,9 @@ const options = {
   expressions: false,
   zoomButtons: false,
   showResetButtonOnGraphpaper: true,
-  lockViewport: false,
+  lockViewport: true,
   pointsOfInterest: false,
-  authorFeatures: true,
+  authorFeatures: false,
   trace: false,
   colors: { "clp-blue": "#069ce1" },
 };
@@ -14,430 +14,533 @@ const calculator = Desmos.GraphingCalculator(elt, options);
 
 const state = {
   version: 11,
-  randomSeed: "c9f2b0bbf32382b6ec89381e3b1ba930",
+  randomSeed: "a4012ada39bb42c456b166fb67fad18a",
   graph: {
     viewport: {
-      xmin: -3,
-      ymin: -10,
-      xmax: 21.5,
-      ymax: 11.18603299698208,
+      xmin: -1.7999999999999998,
+      ymin: -4.5,
+      xmax: 6.300000000000001,
+      ymax: 4.5,
     },
     showGrid: false,
     showXAxis: false,
     showYAxis: false,
+    xAxisNumbers: false,
+    yAxisNumbers: false,
+    polarNumbers: false,
+    squareAxes: false,
   },
   expressions: {
     list: [
+      { type: "folder", id: "87", title: "Customization", collapsed: true },
       {
         type: "expression",
-        id: "2",
-        color: "#000000",
-        latex: "y=2\\left\\{0\\le x\\le20.5\\right\\}",
-      },
-      {
-        type: "expression",
-        id: "3",
-        color: "#000000",
-        latex: "y=0\\left\\{0\\le x\\le20.5\\right\\}",
-      },
-      {
-        type: "expression",
-        id: "4",
-        color: "#000000",
-        latex: "y=x-18.5\\left\\{20.25<x<20.5\\right\\}",
-      },
-      {
-        type: "expression",
-        id: "6",
-        color: "#000000",
-        latex: "y=x-20.5\\left\\{20.25<x<20.5\\right\\}",
-      },
-      {
-        type: "expression",
-        id: "7",
-        color: "#000000",
-        latex: "y=-x+20.5\\left\\{20.25<x<20.5\\right\\}",
-      },
-      {
-        type: "expression",
-        id: "8",
-        color: "#000000",
-        latex: "y=-x+22.5\\left\\{20.25<x<20.5\\right\\}",
-      },
-      {
-        type: "expression",
-        id: "14",
-        color: "#2d70b3",
-        latex: "h_{over1p}=\\left(h_{1px},2\\right)",
-        hidden: true,
-        dragMode: "NONE",
-        pointOpacity: ".5",
-        pointSize: "12",
-        movablePointSize: "12",
-      },
-
-      {
-        type: "expression",
-        id: "16",
-        color: "#388c46",
-        latex: "h_{over2p}=\\left(h_{2px},0\\right)",
-        hidden: true,
-        dragMode: "NONE",
-        pointOpacity: ".5",
-        pointSize: "12",
-        movablePointSize: "12",
-      },
-      {
-        type: "expression",
-        id: "17",
-        color: "#6042a6",
-        latex: "h_{1ax}=8.332036648762116",
-        slider: {
-          hardMin: true,
-        },
-      },
-      {
-        type: "expression",
-        id: "18",
-        color: "#000000",
-        latex: "h_{2ax}=1.7047071918254773",
-      },
-      {
-        type: "expression",
-        id: "19",
-        color: "#c74440",
-        latex: "h_{1px}=1.7047071918254773",
-      },
-      {
-        type: "expression",
-        id: "20",
-        color: "#2d70b3",
-        latex: "h_{2px}=8.332036648762116",
-      },
-      {
-        type: "expression",
-        id: "24",
-        color: "#c74440",
-        latex: "C=\\ \\left[0...n_{ticks}\\right]",
-      },
-      {
-        type: "expression",
-        id: "25",
-        color: "#000000",
-        latex: "x=r_{lt}C\\left\\{1.8<y<2.2\\right\\}",
-      },
-      {
-        type: "expression",
-        id: "26",
-        color: "#000000",
-        latex: "x=r_{lt}C\\left\\{-.2<y<.2\\right\\}",
-      },
-      {
-        type: "expression",
-        id: "27",
-        color: "#000000",
-        latex: "\\left(r_{lt}C,3\\right)",
-        label: "${C_3}",
-        hidden: true,
-        dragMode: "NONE",
-        labelSize: "1",
-      },
-      {
-        type: "expression",
-        id: "30",
-        color: "#000000",
-        latex: "\\left(r_{lt}C,-1\\right)",
-        label: "${C_4}",
-        hidden: true,
-        dragMode: "NONE",
-        labelSize: "1",
-      },
-      {
-        type: "expression",
-        id: "28",
-        color: "#2d70b3",
-        latex: "C_{3}=i_{1}\\cdot C",
-      },
-      {
-        type: "expression",
-        id: "29",
-        color: "#388c46",
-        latex: "C_{4}=i_{2}\\cdot C",
-      },
-      {
-        type: "expression",
-        id: "31",
-        color: "clp-blue",
-        latex: "x=d_{x}\\left\\{0<y<2\\right\\}",
-        hidden: false,
-        lineStyle: "DASHED",
-        lineWidth: "2",
-      },
-      {
-        type: "expression",
-        id: "32",
-        color: "#c74440",
-        latex: "i_{1}=1",
-      },
-      {
-        type: "expression",
-        id: "33",
-        color: "#2d70b3",
-        latex: "i_{2}=.125",
-      },
-      {
-        type: "expression",
-        id: "34",
-        color: "#c74440",
-        latex: "n_{ticks}=16",
+        id: "13",
+        folderId: "87",
+        color: "black",
+        latex: "n_{ticks}=6",
         slider: {
           hardMin: true,
           hardMax: true,
-          min: "1",
-          max: "20",
+          playDirection: -1,
+          min: "0",
+          max: "25",
           step: "1",
         },
       },
       {
         type: "expression",
-        id: "37",
-        color: "#6042a6",
-        latex: "r_{lt}=\\frac{20}{n_{ticks}}",
+        id: "55",
+        folderId: "87",
+        color: "#069ce1",
+        latex: "t_{opLineInterval}=5",
+        slider: { hardMin: true, min: "0" },
       },
       {
         type: "expression",
-        id: "39",
-        color: "#2d70b3",
-        latex: "d_{x}=5",
-        slider: {
-          hardMin: true,
-          hardMax: true,
-          min: "0",
-          max: "20",
-        },
-      },
-      {
-        type: "expression",
-        id: "40",
-        color: "clp-blue",
-        latex: "\\left(d_{x},1\\right)",
-        dragMode: "X",
-      },
-      {
-        type: "expression",
-        id: "41",
-        latex: "w=r_{lt}",
-      },
-      {
-        type: "expression",
-        id: "13",
-        color: "black",
-        latex: "h_{over1a}=\\left(d_{x},2\\right)",
-        showLabel: true,
-        label: " ",
-        hidden: false,
-        dragMode: "NONE",
-        pointOpacity: "1",
-        pointSize: "12",
-        movablePointSize: "12",
-      },
-      {
-        type: "expression",
-        id: "15",
-        color: "black",
-        latex: "h_{over2a}=\\left(d_{x},0\\right)",
-        showLabel: true,
-        label: " ",
-        hidden: false,
-        dragMode: "NONE",
-        pointOpacity: "1",
-        pointSize: "12",
-        movablePointSize: "12",
-      },
-      {
-        type: "expression",
-        id: "42",
-        color: "clp-blue",
-        latex: "x=5\\left\\{0<y<2\\right\\}",
-        hidden: false,
-        lineStyle: "DASHED",
-        lineWidth: "2",
-      },
-      {
-        type: "expression",
-        id: "43",
-        color: "clp-blue",
-        latex: "h_{over1a}=\\left(5,2\\right)",
-        showLabel: true,
-        label: " ",
-        hidden: false,
-        dragMode: "NONE",
-        pointOpacity: "1",
-        pointSize: "12",
-        movablePointSize: "12",
-      },
-      {
-        type: "expression",
-        id: "44",
-        color: "clp-blue",
-        latex: "h_{over2a}=\\left(5,0\\right)",
-        showLabel: true,
-        label: " ",
-        hidden: false,
-        dragMode: "NONE",
-        pointOpacity: "1",
-        pointSize: "12",
-        movablePointSize: "12",
-      },
-      {
-        type: "expression",
-        id: "45",
-        color: "#000000",
-        latex: "\\left(5,3\\right)",
-        label: "1",
-        showLabel: true,
-        hidden: true,
-        dragMode: "NONE",
-        labelSize: "1.25",
-      },
-      {
-        type: "expression",
-        id: "46",
-        color: "#000000",
-        latex: "\\left(5,-1\\right)",
-        label: "0.50",
-        showLabel: true,
-        hidden: true,
-        dragMode: "NONE",
-        labelSize: "1.25",
-      },
-      {
-        type: "expression",
-        id: "47",
-        color: "#000000",
-        latex: "\\left(5,3\\right)",
-        label: "1",
-        showLabel: false,
-        hidden: true,
-        dragMode: "NONE",
-        labelSize: "1.25",
+        id: "56",
+        folderId: "87",
+        color: "#069ce1",
+        latex: "b_{otLineInterval}=2",
+        slider: { hardMin: true, min: "0" },
       },
       {
         type: "expression",
         id: "48",
-        color: "#000000",
-        latex: "\\left(5,-1\\right)",
-        label: "1",
-        showLabel: false,
-        hidden: true,
-        dragMode: "NONE",
-        labelSize: "1.25",
-      },
-      {
-        type: "expression",
-        id: "49",
-        color: "#000000",
-        latex: "\\left(-1.8,2\\right)",
-        label: "Bananas (lb)",
+        folderId: "87",
+        color: "black",
+        latex:
+          "t_{opLineLabel}=\\left(-.5\\cdot t_{ickHeight},t_{opLineY}\\right)",
         showLabel: true,
+        label: "Blue Paint (oz.)",
         hidden: true,
-        dragMode: "NONE",
-        labelSize: "1",
+        labelOrientation: "left",
       },
       {
         type: "expression",
         id: "50",
-        color: "#000000",
-        latex: "\\left(-1.43,0\\right)",
-        label: "Cost ($)",
+        folderId: "87",
+        color: "black",
+        latex:
+          "b_{otLineLabel}=\\left(-.5\\cdot t_{ickHeight},b_{otLineY}\\right)",
         showLabel: true,
+        label: "Yellow Paint (oz.) ",
         hidden: true,
+        labelOrientation: "left",
+      },
+      { type: "folder", id: "76", title: "Lines", collapsed: true },
+      {
+        type: "expression",
+        id: "18",
+        folderId: "76",
+        color: "black",
+        latex: "b_{otLineY}=-.15\\cdot n_{ticks}",
+      },
+      {
+        type: "expression",
+        id: "17",
+        folderId: "76",
+        color: "black",
+        latex: "t_{opLineY}=.15\\cdot n_{ticks}",
+      },
+      {
+        type: "expression",
+        id: "6",
+        folderId: "76",
+        color: "black",
+        latex: "a_{rrowWidth}=t_{ickHeight}",
+      },
+      {
+        type: "expression",
+        id: "3",
+        folderId: "76",
+        color: "black",
+        latex: "t_{opLine}=t_{opLineY}\\left\\{0<x<n_{ticks}\\right\\}",
+      },
+      {
+        type: "expression",
+        id: "4",
+        folderId: "76",
+        color: "black",
+        latex: "b_{otLine}=b_{otLineY}\\left\\{0<x<n_{ticks}\\right\\}",
+      },
+      {
+        type: "expression",
+        id: "5",
+        folderId: "76",
+        color: "black",
+        latex:
+          "b_{otBotArrow}=x-n_{ticks}+b_{otLineY}\\left\\{n_{ticks}-a_{rrowWidth}<x<n_{ticks}\\right\\}",
+      },
+      {
+        type: "expression",
+        id: "10",
+        folderId: "76",
+        color: "black",
+        latex:
+          "b_{otTopArrow}=-x+n_{ticks}+b_{otLineY}\\left\\{n_{ticks}-a_{rrowWidth}<x<n_{ticks}\\right\\}",
+      },
+      {
+        type: "expression",
+        id: "11",
+        folderId: "76",
+        color: "black",
+        latex:
+          "t_{opTopArrow}=x-n_{ticks}+t_{opLineY}\\left\\{n_{ticks}-a_{rrowWidth}<x<n_{ticks}\\right\\}",
+      },
+      {
+        type: "expression",
+        id: "9",
+        folderId: "76",
+        color: "black",
+        latex:
+          "t_{opBotArrow}=-x+n_{ticks}+t_{opLineY}\\left\\{n_{ticks}-a_{rrowWidth}<x<n_{ticks}\\right\\}",
+      },
+      { type: "folder", id: "78", title: "Ticks", collapsed: true },
+      {
+        type: "expression",
+        id: "19",
+        folderId: "78",
+        color: "black",
+        latex: "t_{ickHeight}=n_{ticks}\\cdot.03",
+      },
+      {
+        type: "expression",
+        id: "15",
+        folderId: "78",
+        color: "black",
+        latex: "t_{ickLocations}=\\left[0...n_{ticks}-1\\right]",
+      },
+      {
+        type: "expression",
+        id: "16",
+        folderId: "78",
+        color: "black",
+        latex:
+          "t_{opTicks}=\\left(t_{ickLocations}\\right)\\left\\{t_{opLineY}-t_{ickHeight}<y<t_{opLineY}+t_{ickHeight}\\right\\}",
+      },
+      {
+        type: "expression",
+        id: "20",
+        folderId: "78",
+        color: "black",
+        latex:
+          "b_{otTicks}=\\left(t_{ickLocations}\\right)\\left\\{b_{otLineY}-t_{ickHeight}<y<b_{otLineY}+t_{ickHeight}\\right\\}",
+      },
+      { type: "folder", id: "79", title: "Barbell 1", collapsed: true },
+      {
+        type: "expression",
+        id: "21",
+        folderId: "79",
+        color: "#069ce1",
+        latex: "b_{arbellCtrlPt1}=\\left(b_{arbellCtrlPt1X},0\\right)",
+        hidden: true,
+        dragMode: "X",
+      },
+      {
+        type: "expression",
+        id: "26",
+        folderId: "79",
+        color: "#069ce1",
+        latex: "b_{arbellCtrlPt1X}=3",
+        slider: { hardMin: true, hardMax: true, min: "0", max: "n_{ticks}" },
+      },
+      {
+        type: "expression",
+        id: "29",
+        folderId: "79",
+        color: "#069ce1",
+        latex: "b_{arbellTopPt1}=\\left(b_{arbellCtrlPt1X},t_{opLineY}\\right)",
         dragMode: "NONE",
-        labelSize: "1",
+      },
+      {
+        type: "expression",
+        id: "30",
+        folderId: "79",
+        color: "#069ce1",
+        latex: "b_{arbellBotPt1}=\\left(b_{arbellCtrlPt1X},b_{otLineY}\\right)",
+        dragMode: "NONE",
+      },
+      {
+        type: "expression",
+        id: "31",
+        folderId: "79",
+        color: "#069ce1",
+        latex:
+          "b_{arbellLine1}=b_{arbellCtrlPt1X}\\left\\{b_{otLineY}<y<t_{opLineY}\\right\\}",
+        lineStyle: "DASHED",
+      },
+      {
+        type: "expression",
+        id: "51",
+        folderId: "79",
+        color: "#069ce1",
+        latex:
+          "b_{arbellTopLabelPt1}=\\left(b_{arbellTopPt1}.x,1.5\\cdot t_{opLineY}\\right)",
+        showLabel: true,
+        label: "${b_{arbellTopLabel1}}",
+        hidden: true,
+      },
+      {
+        type: "expression",
+        id: "52",
+        folderId: "79",
+        color: "#069ce1",
+        latex:
+          "b_{arbellBotLabelPt1}=\\left(b_{arbellBotPt1}.x,1.5\\cdot b_{otLineY}\\right)",
+        showLabel: true,
+        label: "${b_{arbellBotLabel1}}",
+        hidden: true,
+      },
+      {
+        type: "expression",
+        id: "53",
+        folderId: "79",
+        color: "#069ce1",
+        latex:
+          "b_{arbellTopLabel1}=t_{opLineInterval}\\cdot b_{arbellTopLabelPt1}.x",
+      },
+      {
+        type: "expression",
+        id: "54",
+        folderId: "79",
+        color: "#069ce1",
+        latex:
+          "b_{arbellBotLabel1}=b_{otLineInterval}\\cdot b_{arbellBotLabelPt1}.x",
+      },
+      { type: "folder", id: "82", title: "Barbell 2", collapsed: true },
+      {
+        type: "expression",
+        id: "32",
+        folderId: "82",
+        color: "black",
+        latex: "b_{arbellCtrlPt2X}=3",
+        slider: {
+          hardMin: true,
+          hardMax: true,
+          min: "0",
+          max: "n_{ticks}",
+          step: "1",
+        },
+      },
+      {
+        type: "expression",
+        id: "33",
+        folderId: "82",
+        color: "black",
+        latex: "b_{arbellCtrlPt2}=\\left(b_{arbellCtrlPt2X},0\\right)",
+        dragMode: "X",
+      },
+      {
+        type: "expression",
+        id: "34",
+        folderId: "82",
+        color: "black",
+        latex: "b_{arbellTopPt2}=\\left(b_{arbellCtrlPt2X},t_{opLineY}\\right)",
+        dragMode: "NONE",
+      },
+      {
+        type: "expression",
+        id: "35",
+        folderId: "82",
+        color: "black",
+        latex: "b_{arbellBotPt2}=\\left(b_{arbellCtrlPt2X},b_{otLineY}\\right)",
+        dragMode: "NONE",
+      },
+      {
+        type: "expression",
+        id: "36",
+        folderId: "82",
+        color: "black",
+        latex:
+          "b_{arbellLine2}=b_{arbellCtrlPt2X}\\left\\{b_{otLineY}<y<t_{opLineY}\\right\\}",
+        lineStyle: "DASHED",
+      },
+      {
+        type: "expression",
+        id: "59",
+        folderId: "82",
+        color: "black",
+        latex:
+          "b_{arbellTopLabelPt2}=\\left(b_{arbellTopPt2}.x,1.5\\cdot t_{opLineY}\\right)",
+        showLabel: true,
+        label: "${b_{arbellTopLabel2}}",
+        hidden: true,
+      },
+      {
+        type: "expression",
+        id: "60",
+        folderId: "82",
+        color: "black",
+        latex:
+          "b_{arbellBotLabelPt2}=\\left(b_{arbellBotPt2}.x,1.5\\cdot b_{otLineY}\\right)",
+        showLabel: true,
+        label: "${b_{arbellBotLabel2}}",
+        hidden: true,
+      },
+      {
+        type: "expression",
+        id: "63",
+        folderId: "82",
+        color: "#069ce1",
+        latex:
+          "b_{arbellTopLabel2}=t_{opLineInterval}\\cdot b_{arbellTopLabelPt2}.x",
+      },
+      {
+        type: "expression",
+        id: "66",
+        folderId: "82",
+        color: "#069ce1",
+        latex:
+          "b_{arbellBotLabel2}=b_{otLineInterval}\\cdot b_{arbellBotLabelPt2}.x",
+      },
+      { type: "folder", id: "84", title: "Barbell 3", collapsed: true },
+      {
+        type: "expression",
+        id: "37",
+        folderId: "84",
+        color: "black",
+        latex: "b_{arbellCtrlPt3X}=3",
+        slider: {
+          hardMin: true,
+          hardMax: true,
+          min: "0",
+          max: "n_{ticks}",
+          step: "1",
+        },
+      },
+      {
+        type: "expression",
+        id: "38",
+        folderId: "84",
+        color: "black",
+        latex: "b_{arbellCtrlPt3}=\\left(b_{arbellCtrlPt3X},0\\right)",
+        dragMode: "X",
+      },
+      {
+        type: "expression",
+        id: "39",
+        folderId: "84",
+        color: "black",
+        latex: "b_{arbellTopPt3}=\\left(b_{arbellCtrlPt3X},t_{opLineY}\\right)",
+        dragMode: "NONE",
+      },
+      {
+        type: "expression",
+        id: "40",
+        folderId: "84",
+        color: "black",
+        latex: "b_{arbellBotPt3}=\\left(b_{arbellCtrlPt3X},b_{otLineY}\\right)",
+        dragMode: "NONE",
+      },
+      {
+        type: "expression",
+        id: "41",
+        folderId: "84",
+        color: "black",
+        latex:
+          "b_{arbellLine3}=b_{arbellCtrlPt3X}\\left\\{b_{otLineY}<y<t_{opLineY}\\right\\}",
+        lineStyle: "DASHED",
+      },
+      {
+        type: "expression",
+        id: "67",
+        folderId: "84",
+        color: "black",
+        latex:
+          "b_{arbellTopLabelPt3}=\\left(b_{arbellTopPt3}.x,1.5\\cdot t_{opLineY}\\right)",
+        showLabel: true,
+        label: "${b_{arbellTopLabel3}}",
+        hidden: true,
+      },
+      {
+        type: "expression",
+        id: "68",
+        folderId: "84",
+        color: "black",
+        latex:
+          "b_{arbellBotLabelPt3}=\\left(b_{arbellBotPt3}.x,1.5\\cdot b_{otLineY}\\right)",
+        showLabel: true,
+        label: "${b_{arbellBotLabel3}}",
+        hidden: true,
+      },
+      {
+        type: "expression",
+        id: "69",
+        folderId: "84",
+        color: "#069ce1",
+        latex:
+          "b_{arbellTopLabel3}=t_{opLineInterval}\\cdot b_{arbellTopLabelPt3}.x",
+      },
+      {
+        type: "expression",
+        id: "70",
+        folderId: "84",
+        color: "#069ce1",
+        latex:
+          "b_{arbellBotLabel3}=b_{otLineInterval}\\cdot b_{arbellBotLabelPt3}.x",
+      },
+      { type: "folder", id: "86", title: "Barbell 4", collapsed: true },
+      {
+        type: "expression",
+        id: "42",
+        folderId: "86",
+        color: "black",
+        latex: "b_{arbellCtrlPt4X}=3",
+        slider: {
+          hardMin: true,
+          hardMax: true,
+          min: "0",
+          max: "n_{ticks}",
+          step: "1",
+        },
+      },
+      {
+        type: "expression",
+        id: "43",
+        folderId: "86",
+        color: "black",
+        latex: "b_{arbellCtrlPt4}=\\left(b_{arbellCtrlPt4X},0\\right)",
+        dragMode: "X",
+      },
+      {
+        type: "expression",
+        id: "44",
+        folderId: "86",
+        color: "black",
+        latex: "b_{arbellTopPt4}=\\left(b_{arbellCtrlPt4X},t_{opLineY}\\right)",
+        dragMode: "NONE",
+      },
+      {
+        type: "expression",
+        id: "45",
+        folderId: "86",
+        color: "black",
+        latex: "b_{arbellBotPt4}=\\left(b_{arbellCtrlPt4X},b_{otLineY}\\right)",
+        dragMode: "NONE",
+      },
+      {
+        type: "expression",
+        id: "46",
+        folderId: "86",
+        color: "black",
+        latex:
+          "b_{arbellLine4}=b_{arbellCtrlPt4X}\\left\\{b_{otLineY}<y<t_{opLineY}\\right\\}",
+        lineStyle: "DASHED",
+      },
+      {
+        type: "expression",
+        id: "71",
+        folderId: "86",
+        color: "black",
+        latex:
+          "b_{arbellTopLabelPt4}=\\left(b_{arbellTopPt4}.x,1.5\\cdot t_{opLineY}\\right)",
+        showLabel: true,
+        label: "${b_{arbellTopLabel4}}",
+        hidden: true,
+      },
+      {
+        type: "expression",
+        id: "72",
+        folderId: "86",
+        color: "black",
+        latex:
+          "b_{arbellBotLabelPt4}=\\left(b_{arbellBotPt4}.x,1.5\\cdot b_{otLineY}\\right)",
+        showLabel: true,
+        label: "${b_{arbellBotLabel4}}",
+        hidden: true,
+      },
+      {
+        type: "expression",
+        id: "73",
+        folderId: "86",
+        color: "#069ce1",
+        latex:
+          "b_{arbellTopLabel4}=t_{opLineInterval}\\cdot b_{arbellTopLabelPt4}.x",
+      },
+      {
+        type: "expression",
+        id: "74",
+        folderId: "86",
+        color: "#069ce1",
+        latex:
+          "b_{arbellBotLabel4}=b_{otLineInterval}\\cdot b_{arbellBotLabelPt4}.x",
       },
     ],
   },
 };
 
-calculator.setDefaultState(state);
 calculator.setState(state);
-const calculatorRect = elt.getBoundingClientRect();
 
-let hoverVisible = false;
-let xList = [];
-const SNAP_DISTANCE = 0.5;
-const NEAR_DISTANCE = 0.15;
-
-const [
-  hoverPointActive1,
-  hoverPointPassive1,
-  hoverPointActive2,
-  hoverPointPassive2,
-  barbellDragPoint,
-] = ["13", "14", "15", "16", "40"];
-
-const show = (...ids) => {
-  ids.forEach((id) => {
-    calculator.setExpression({ id: id, hidden: false });
+numTicks = calculator.HelperExpression({ latex: "n_{ticks}" });
+numTicks.observe("numericValue", () => {
+  const n = numTicks.numericValue;
+  calculator.setMathBounds({
+    left: -0.3 * n,
+    right: 1.05 * n,
+    bottom: -0.75 * n,
+    top: 0.75 * n,
   });
-};
-
-const hide = (...ids) => {
-  ids.forEach((id) => {
-    calculator.setExpression({ id: id, hidden: true });
-  });
-};
-
-const scaleRatio = calculator.HelperExpression({ latex: "w" });
-
-const snapX = (x) => {
-  const snapPoint =
-    Math.round(x / scaleRatio.numericValue) * scaleRatio.numericValue;
-  if (Math.abs(x - snapPoint) < SNAP_DISTANCE) {
-    return snapPoint;
-  } else return x;
-};
-
-const nearTo = (x, y) => {
-  return Math.abs(x - y) < NEAR_DISTANCE;
-};
-
-let barbellDragPointX = calculator.HelperExpression({ latex: "d_{x}" });
-
-barbellDragPointX.observe("numericValue", () => {
-  const x = barbellDragPointX.numericValue;
-  const snapPoint =
-    Math.round(x / scaleRatio.numericValue) * scaleRatio.numericValue;
-  if (!nearTo(x, 5) && nearTo(snapPoint, x)) {
-    calculator.setExpression({
-      id: "47",
-      latex: `\\left(${snapX(x)},3\\right)`,
-      label: `${snapX(x) / scaleRatio.numericValue / 4}`,
-      showLabel: true,
-    });
-    calculator.setExpression({
-      id: "48",
-      latex: `\\left(${snapX(x)},-1\\right)`,
-      label: `${snapX(x) / scaleRatio.numericValue / 8}`,
-      showLabel: true,
-    });
-  } else {
-    calculator.setExpression({
-      id: "47",
-      showLabel: false,
-    });
-    calculator.setExpression({
-      id: "48",
-      showLabel: false,
-    });
-  }
 });
 
-elt.addEventListener("mouseup", () => {
-  const x = barbellDragPointX.numericValue;
-  calculator.setExpression({ id: "39", latex: `d_{x}=${snapX(x)}` });
-});
-
-calculator.observeEvent("graphReset", () => {
-  barbellDragPointX = calculator.HelperExpression({ latex: "d_{x}" });
-});
+elt.addEventListener("dragend");
