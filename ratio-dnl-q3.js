@@ -8,6 +8,7 @@ const options = {
   authorFeatures: false,
   trace: false,
   colors: { "clp-blue": "#069ce1" },
+  border: false,
 };
 
 const elt = document.getElementById("calculator");
