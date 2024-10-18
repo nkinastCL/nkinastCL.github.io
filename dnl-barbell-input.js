@@ -556,11 +556,14 @@ numTicks.observe("numericValue", () => {
   });
 });
 
-let input1X = 0;
+const isWithin = (a, b, r) => {
+  return Math.abs(a - b) < r;
+};
 
 const barbellInput1 = document.createElement("input");
 const barbellInput2 = document.createElement("input");
 const barbellInput3 = document.createElement("input");
+
 barbellInput1.setAttribute("type", "text");
 barbellInput2.setAttribute("type", "text");
 barbellInput3.setAttribute("type", "text");
@@ -590,9 +593,25 @@ elt.append(barbellInput3);
 
 const barbell1X = calculator.HelperExpression({ latex: "b_{arbellCtrlPt1X}" });
 barbell1X.observe("numericValue", () => {
-  barbellInput1.style.left = `${Math.round(
+  const x = Math.round(
     calculator.mathToPixels({ x: barbell1X.numericValue }).x
-  )}px`;
+  );
+  console.log(
+    x,
+    parseInt(barbellInput2.style.left),
+    parseInt(barbellInput3.style.left)
+  );
+
+  if (
+    x != 0 &&
+    (isWithin(x, parseInt(barbellInput2.style.left), 50) ||
+      isWithin(x, parseInt(barbellInput3.style.left), 50))
+  ) {
+    barbellInput1.style.top = "375px";
+  } else {
+    barbellInput1.style.top = "325px";
+  }
+  barbellInput1.style.left = `${x}px`;
 });
 
 const barbell2X = calculator.HelperExpression({ latex: "b_{arbellCtrlPt2X}" });
