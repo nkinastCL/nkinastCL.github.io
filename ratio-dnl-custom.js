@@ -5,7 +5,7 @@ const options = {
   showResetButtonOnGraphpaper: true,
   lockViewport: true,
   pointsOfInterest: false,
-  authorFeatures: false,
+  authorFeatures: true,
   trace: false,
   colors: { "clp-blue": "#069ce1" },
   border: false,

@@ -1,6 +1,6 @@
 const options = {
   settingsMenu: false,
-  expressions: false,
+  expressions: true,
   zoomButtons: false,
   showResetButtonOnGraphpaper: false,
   lockViewport: true,
