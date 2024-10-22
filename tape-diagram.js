@@ -3,7 +3,7 @@ const options = {
   expressions: true,
   zoomButtons: false,
   showResetButtonOnGraphpaper: true,
-  lockViewport: false,
+  lockViewport: true,
   pointsOfInterest: false,
   authorFeatures: true,
   trace: false,
@@ -25,11 +25,12 @@ const state = {
   randomSeed: "de4271dc291fdc653980de0329f787ec",
   graph: {
     viewport: {
-      xmin: -10.630640821566768,
-      ymin: -6.865960949756806,
-      xmax: 22.999234085867204,
-      ymax: 19.15715653813853,
+      xmin: -1.9226644150290149,
+      ymin: -3.8726879008361346,
+      xmax: 27.867120970102786,
+      ymax: 11.618000499432402,
     },
+    showGrid: false,
     showXAxis: false,
     showYAxis: false,
     xAxisNumbers: false,
@@ -38,7 +39,7 @@ const state = {
   },
   expressions: {
     list: [
-      { type: "folder", id: "999", title: "Constants" },
+      { type: "folder", id: "999", title: "Constants", collapsed: true },
       {
         type: "expression",
         id: "1",
@@ -67,7 +68,7 @@ const state = {
         id: "4",
         folderId: "999",
         color: "#069ce1",
-        latex: "r_{ectWidth}=2",
+        latex: "r_{ectWidth}=2*r_{ectHeight}",
       },
       {
         type: "expression",
@@ -111,7 +112,7 @@ const state = {
         color: "black",
         latex: "v_{erticalDistance}=4",
       },
-      { type: "folder", id: "98", title: "Tape 1" },
+      { type: "folder", id: "98", title: "Tape 1", collapsed: true },
       {
         type: "expression",
         id: "7",
@@ -157,7 +158,7 @@ const state = {
           step: "r_{ectWidth}",
         },
       },
-      { type: "folder", id: "97", title: "Tape 2" },
+      { type: "folder", id: "97", title: "Tape 2", collapsed: true },
       {
         type: "expression",
         id: "10",
@@ -182,7 +183,7 @@ const state = {
         id: "12",
         folderId: "97",
         color: "#fde4d0",
-        latex: "c_{trlPt2X}=12",
+        latex: "c_{trlPt2X}=22",
         slider: {
           hardMin: true,
           hardMax: true,
@@ -191,7 +192,7 @@ const state = {
           step: "r_{ectWidth}",
         },
       },
-      { type: "folder", id: "96", title: "Tape 3" },
+      { type: "folder", id: "96", title: "Tape 3", collapsed: true },
       {
         type: "expression",
         id: "15",
@@ -216,7 +217,7 @@ const state = {
         id: "17",
         folderId: "96",
         color: "#fde4d0",
-        latex: "c_{trlPt3X}=12",
+        latex: "c_{trlPt3X}=18",
         slider: {
           hardMin: true,
           hardMax: true,
