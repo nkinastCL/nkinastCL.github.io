@@ -21,12 +21,36 @@ const options = {
 const elt = document.getElementById("calculator");
 const calculator = Desmos.GraphingCalculator(elt, options);
 
-const ctrlPtArrows = (n, c) => {
-  return `c_{trlPt${n}Arrow${c}}=\\operatorname{polygon}\\left(\\left[c_{trlPt${n}}.x,c_{trlPt${n}}.x${
-    c === "L" ? "-" : "+"
-  }r_{ectWidth}\\cdot.15,c_{trlPt${n}}.x\\right]${
-    c === "L" ? "-" : "+"
-  }.15\\cdot r_{ectWidth},\\left[c_{trlPt${n}}.y-.2\\cdot r_{ectHeight},c_{trlPt${n}}.y,c_{trlPt${n}}.y+.2\\cdot r_{ectHeight}\\right]\\right)`;
+const makeTape = (tapeNum) => {
+  return `t_{ape${tapeNum}}=\\left\\{c_{trlPt${tapeNum}X}=0:\\operatorname{polygon}\\left(\\left(0,${
+    tapeNum - 1
+  }*v_{erticalDistance}\\right),\\left(0,${
+    tapeNum - 1
+  }*v_{erticalDistance}\\right),\\left(0,r_{ectHeight}+${
+    tapeNum - 1
+  }*v_{erticalDistance}\\right),\\left(0,r_{ectHeight}+${
+    tapeNum - 1
+  }*v_{erticalDistance}\\right)\\right),\\operatorname{polygon}\\left(\\left(N_{${tapeNum}}\\cdot r_{ectWidth},${
+    tapeNum - 1
+  }*v_{erticalDistance}\\right),\\left(\\left(N_{${tapeNum}}+1\\right)\\cdot r_{ectWidth},${
+    tapeNum - 1
+  }*v_{erticalDistance}\\right),\\left(\\left(N_{${tapeNum}}+1\\right)\\cdot r_{ectWidth},r_{ectHeight}+${
+    tapeNum - 1
+  }*v_{erticalDistance}\\right),\\left(N_{${tapeNum}}\\cdot r_{ectWidth},r_{ectHeight}+${
+    tapeNum - 1
+  }*v_{erticalDistance}\\right)\\right)\\right\\}`;
+};
+
+const makeCtrlPtArrows = (tapeNum, direction) => {
+  return `c_{trlPt${tapeNum}Arrow${direction}}=\\operatorname{polygon}\\left(\\left[c_{trlPt${tapeNum}}.x,c_{trlPt${tapeNum}}.x${
+    direction === "L" ? "-" : "+"
+  }r_{ectWidth}\\cdot.15,c_{trlPt${tapeNum}}.x\\right]${
+    direction === "L" ? "-" : "+"
+  }.15\\cdot r_{ectWidth},\\left[c_{trlPt${tapeNum}}.y-.2\\cdot r_{ectHeight},c_{trlPt${tapeNum}}.y,c_{trlPt${tapeNum}}.y+.2\\cdot r_{ectHeight}\\right]\\right)`;
+};
+
+const makeLabel = (tapeNum) => {
+  return `l_{abel${tapeNum}}=\\left(0-.2\\cdot r_{ectWidth},c_{trlPt${tapeNum}}.y\\right)`;
 };
 
 const state = {
@@ -35,9 +59,9 @@ const state = {
   graph: {
     viewport: {
       xmin: -4,
-      ymin: -6.666666666666666,
+      ymin: -2,
       xmax: 28,
-      ymax: 14.666666666666666,
+      ymax: 10,
     },
     showGrid: false,
     showXAxis: false,
@@ -84,7 +108,7 @@ const state = {
         id: "5",
         folderId: "999",
         color: "#069ce1",
-        latex: "m_{axRects}=16",
+        latex: "m_{axRects}=12",
         slider: {
           hardMin: true,
           hardMax: true,
@@ -119,16 +143,15 @@ const state = {
         id: "13",
         folderId: "999",
         color: "black",
-        latex: "v_{erticalDistance}=4",
+        latex: "v_{erticalDistance}=2*r_{ectWidth}",
       },
-      { type: "folder", id: "98", title: "Tape 1" },
+      { type: "folder", id: "98", title: "Tape 1", collapsed: true },
       {
         type: "expression",
         id: "7",
         folderId: "98",
         color: "#be95be",
-        latex:
-          "t_{ape1}=\\left\\{c_{trlPt1X}=0:\\operatorname{polygon}\\left(\\left(0,0\\right),\\left(0,0\\right),\\left(0,r_{ectHeight}\\right),\\left(0,r_{ectHeight}\\right)\\right),\\operatorname{polygon}\\left(\\left(N_1\\cdot r_{ectWidth},0\\right),\\left(\\left(N_1+1\\right)\\cdot r_{ectWidth},0\\right),\\left(\\left(N_1+1\\right)\\cdot r_{ectWidth},r_{ectHeight}\\right),\\left(N_1\\cdot r_{ectWidth},r_{ectHeight}\\right)\\right)\\right\\}",
+        latex: makeTape(1),
         fillOpacity: ".4",
         lineOpacity: "1",
       },
@@ -146,7 +169,7 @@ const state = {
         id: "14",
         folderId: "98",
         color: "#be95be",
-        latex: ctrlPtArrows(1, "L"),
+        latex: makeCtrlPtArrows(1, "L"),
         lines: true,
         fillOpacity: "1",
         lineOpacity: "1",
@@ -157,7 +180,7 @@ const state = {
         id: "1004",
         folderId: "98",
         color: "#be95be",
-        latex: ctrlPtArrows(1, "R"),
+        latex: makeCtrlPtArrows(1, "R"),
         lines: true,
         fillOpacity: "1",
         lineOpacity: "1",
@@ -183,8 +206,7 @@ const state = {
         id: "10",
         folderId: "97",
         color: "#f5ad61",
-        latex:
-          "t_{ape2}=\\left\\{c_{trlPt2X}=0:\\operatorname{polygon}\\left(\\left(0,v_{erticalDistance}\\right),\\left(0,v_{erticalDistance}\\right),\\left(0,r_{ectHeight}+v_{erticalDistance}\\right),\\left(0,r_{ectHeight}+v_{erticalDistance}\\right)\\right),\\operatorname{polygon}\\left(\\left(N_{2}\\cdot r_{ectWidth},v_{erticalDistance}\\right),\\left(\\left(N_{2}+1\\right)\\cdot r_{ectWidth},v_{erticalDistance}\\right),\\left(\\left(N_{2}+1\\right)\\cdot r_{ectWidth},r_{ectHeight}+v_{erticalDistance}\\right),\\left(N_{2}\\cdot r_{ectWidth},r_{ectHeight}+v_{erticalDistance}\\right)\\right)\\right\\}",
+        latex: makeTape(2),
         fillOpacity: ".4",
         lineOpacity: "1",
       },
@@ -200,9 +222,9 @@ const state = {
       {
         type: "expression",
         id: "30",
-        folderId: "98",
+        folderId: "97",
         color: "#f5ad61",
-        latex: ctrlPtArrows(2, "L"),
+        latex: makeCtrlPtArrows(2, "L"),
         lines: true,
         fillOpacity: "1",
         lineOpacity: "1",
@@ -211,9 +233,9 @@ const state = {
       {
         type: "expression",
         id: "31",
-        folderId: "98",
+        folderId: "97",
         color: "#f5ad61",
-        latex: ctrlPtArrows(2, "R"),
+        latex: makeCtrlPtArrows(2, "R"),
         lines: true,
         fillOpacity: "1",
         lineOpacity: "1",
@@ -239,8 +261,7 @@ const state = {
         id: "15",
         folderId: "96",
         color: "#069ce1",
-        latex:
-          "t_{ape3}=\\left\\{c_{trlPt3X}=0:\\operatorname{polygon}\\left(\\left(0,2*v_{erticalDistance}\\right),\\left(0,2*v_{erticalDistance}\\right),\\left(0,r_{ectHeight}+2*v_{erticalDistance}\\right),\\left(0,r_{ectHeight}+2*v_{erticalDistance}\\right)\\right),\\operatorname{polygon}\\left(\\left(N_{3}\\cdot r_{ectWidth},2*v_{erticalDistance}\\right),\\left(\\left(N_{3}+1\\right)\\cdot r_{ectWidth},2*v_{erticalDistance}\\right),\\left(\\left(N_{3}+1\\right)\\cdot r_{ectWidth},r_{ectHeight}+2*v_{erticalDistance}\\right),\\left(N_{3}\\cdot r_{ectWidth},r_{ectHeight}+2*v_{erticalDistance}\\right)\\right)\\right\\}",
+        latex: makeTape(3),
         fillOpacity: ".4",
         lineOpacity: "1",
       },
@@ -256,9 +277,9 @@ const state = {
       {
         type: "expression",
         id: "40",
-        folderId: "98",
+        folderId: "96",
         color: "#069ce1",
-        latex: ctrlPtArrows(3, "L"),
+        latex: makeCtrlPtArrows(3, "L"),
         lines: true,
         fillOpacity: "1",
         lineOpacity: "1",
@@ -267,9 +288,9 @@ const state = {
       {
         type: "expression",
         id: "41",
-        folderId: "98",
+        folderId: "96",
         color: "#069ce1",
-        latex: ctrlPtArrows(3, "R"),
+        latex: makeCtrlPtArrows(3, "R"),
         lines: true,
         fillOpacity: "1",
         lineOpacity: "1",
@@ -293,7 +314,7 @@ const state = {
         type: "expression",
         id: "1000",
         color: "#000000",
-        latex: "l_{abel1}=\\left(0-.2\\cdot r_{ectWidth},c_{trlPt1}.y\\right)",
+        latex: makeLabel(1),
         showLabel: true,
         label: "Label",
         hidden: true,
@@ -303,7 +324,7 @@ const state = {
         type: "expression",
         id: "1001",
         color: "#000000",
-        latex: "l_{abel2}=\\left(0-.2\\cdot r_{ectWidth},c_{trlPt2}.y\\right)",
+        latex: makeLabel(2),
         showLabel: true,
         label: "Label",
         hidden: true,
@@ -313,7 +334,7 @@ const state = {
         type: "expression",
         id: "1002",
         color: "#000000",
-        latex: "l_{abel3}=\\left(0-.2\\cdot r_{ectWidth},c_{trlPt3}.y\\right)",
+        latex: makeLabel(3),
         showLabel: true,
         label: "Label",
         hidden: true,
@@ -324,3 +345,21 @@ const state = {
 };
 
 calculator.setState(state);
+
+let maxRects = 0;
+
+const maxRectsExp = calculator.HelperExpression({ latex: "m_{axRects}" });
+maxRectsExp.observe("numericValue", () => {
+  maxRects = maxRectsExp.numericValue;
+});
+
+rectHeight = calculator.HelperExpression({ latex: "r_{ectHeight}" });
+rectHeight.observe("numericValue", () => {
+  const n = rectHeight.numericValue;
+  calculator.setMathBounds({
+    left: -3 * n,
+    right: 2 * (maxRects + 1) * n,
+    bottom: -2 * n,
+    top: 11 * n,
+  });
+});
