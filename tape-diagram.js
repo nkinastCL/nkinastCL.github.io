@@ -11,6 +11,7 @@ const options = {
     "clp-blue": "#069ce1",
     "clp-orange": "#f5ad61",
     "clp-beige": "#fde4d0",
+    "clp-purple": "#be95be",
     black: "#000000",
     white: "#ffffff",
   },
@@ -20,15 +21,23 @@ const options = {
 const elt = document.getElementById("calculator");
 const calculator = Desmos.GraphingCalculator(elt, options);
 
+const ctrlPtArrows = (n, c) => {
+  return `c_{trlPt${n}Arrow${c}}=\\operatorname{polygon}\\left(\\left[c_{trlPt${n}}.x,c_{trlPt${n}}.x${
+    c === "L" ? "-" : "+"
+  }r_{ectWidth}\\cdot.15,c_{trlPt${n}}.x\\right]${
+    c === "L" ? "-" : "+"
+  }.15\\cdot r_{ectWidth},\\left[c_{trlPt${n}}.y-.2\\cdot r_{ectHeight},c_{trlPt${n}}.y,c_{trlPt${n}}.y+.2\\cdot r_{ectHeight}\\right]\\right)`;
+};
+
 const state = {
   version: 11,
   randomSeed: "de4271dc291fdc653980de0329f787ec",
   graph: {
     viewport: {
-      xmin: -1.9226644150290149,
-      ymin: -7.653153522330241,
-      xmax: 27.867120970102786,
-      ymax: 15.398466120926509,
+      xmin: -4,
+      ymin: -6.666666666666666,
+      xmax: 28,
+      ymax: 14.666666666666666,
     },
     showGrid: false,
     showXAxis: false,
@@ -112,7 +121,7 @@ const state = {
         color: "black",
         latex: "v_{erticalDistance}=4",
       },
-      { type: "folder", id: "98", title: "Tape 1", collapsed: true },
+      { type: "folder", id: "98", title: "Tape 1" },
       {
         type: "expression",
         id: "7",
@@ -130,15 +139,25 @@ const state = {
         color: "#be95be",
         latex: "c_{trlPt1}=\\left(c_{trlPt1X},0.5\\cdot r_{ectHeight}\\right)",
         dragMode: "X",
-        pointOpacity: ".1",
+        pointOpacity: "1",
       },
       {
         type: "expression",
         id: "14",
         folderId: "98",
         color: "#be95be",
-        latex:
-          "c_{trlPt1Arrow}=\\operatorname{polygon}\\left(\\left[c_{trlPt1}.x,c_{trlPt1}.x+r_{ectWidth}\\cdot.15,c_{trlPt1}.x\\right]-.05\\cdot r_{ectWidth},\\left[c_{trlPt1}.y-.2\\cdot r_{ectHeight},c_{trlPt1}.y,c_{trlPt1}.y+.2\\cdot r_{ectHeight}\\right]\\right)",
+        latex: ctrlPtArrows(1, "L"),
+        lines: true,
+        fillOpacity: "1",
+        lineOpacity: "1",
+        lineWidth: "2",
+      },
+      {
+        type: "expression",
+        id: "1004",
+        folderId: "98",
+        color: "#be95be",
+        latex: ctrlPtArrows(1, "R"),
         lines: true,
         fillOpacity: "1",
         lineOpacity: "1",
@@ -149,7 +168,7 @@ const state = {
         id: "9",
         folderId: "98",
         color: "#f5ad61",
-        latex: "c_{trlPt1X}=18",
+        latex: "c_{trlPt1X}=12",
         slider: {
           hardMin: true,
           hardMax: true,
@@ -180,10 +199,32 @@ const state = {
       },
       {
         type: "expression",
+        id: "30",
+        folderId: "98",
+        color: "#f5ad61",
+        latex: ctrlPtArrows(2, "L"),
+        lines: true,
+        fillOpacity: "1",
+        lineOpacity: "1",
+        lineWidth: "2",
+      },
+      {
+        type: "expression",
+        id: "31",
+        folderId: "98",
+        color: "#f5ad61",
+        latex: ctrlPtArrows(2, "R"),
+        lines: true,
+        fillOpacity: "1",
+        lineOpacity: "1",
+        lineWidth: "2",
+      },
+      {
+        type: "expression",
         id: "12",
         folderId: "97",
         color: "#fde4d0",
-        latex: "c_{trlPt2X}=12",
+        latex: "c_{trlPt2X}=18",
         slider: {
           hardMin: true,
           hardMax: true,
@@ -192,7 +233,7 @@ const state = {
           step: "r_{ectWidth}",
         },
       },
-      { type: "folder", id: "96", title: "Tape 3" },
+      { type: "folder", id: "96", title: "Tape 3", collapsed: true },
       {
         type: "expression",
         id: "15",
@@ -214,10 +255,32 @@ const state = {
       },
       {
         type: "expression",
+        id: "40",
+        folderId: "98",
+        color: "#069ce1",
+        latex: ctrlPtArrows(3, "L"),
+        lines: true,
+        fillOpacity: "1",
+        lineOpacity: "1",
+        lineWidth: "2",
+      },
+      {
+        type: "expression",
+        id: "41",
+        folderId: "98",
+        color: "#069ce1",
+        latex: ctrlPtArrows(3, "R"),
+        lines: true,
+        fillOpacity: "1",
+        lineOpacity: "1",
+        lineWidth: "2",
+      },
+      {
+        type: "expression",
         id: "17",
         folderId: "96",
         color: "#fde4d0",
-        latex: "c_{trlPt3X}=22",
+        latex: "c_{trlPt3X}=8",
         slider: {
           hardMin: true,
           hardMax: true,
