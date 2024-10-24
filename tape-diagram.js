@@ -1,3 +1,5 @@
+// TODO: Adjust x min based on max label width?
+
 const options = {
   settingsMenu: true,
   expressions: true,
