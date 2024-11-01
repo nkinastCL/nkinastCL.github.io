@@ -1,6 +1,6 @@
 const options = {
   settingsMenu: false,
-  expressions: true,
+  expressions: false,
   zoomButtons: false,
   showResetButtonOnGraphpaper: true,
   lockViewport: true,
@@ -227,23 +227,6 @@ showProtractor.observe("numericValue", () => {
     calculator.setExpression({ id: "64", hidden: false });
   }
 });
-
-// {
-//   type: "expression",
-//   id: "68",
-//   color: "#069ce1",
-//   latex: "A_{2}=\\left(-4.52,2.02\\right)",
-//   hidden: true,
-//   dragMode: "NONE",
-// },
-// {
-//   type: "expression",
-//   id: "69",
-//   color: "#069ce1",
-//   latex: "A_{3}=\\left(4.93,-0.52\\right)",
-//   hidden: true,
-//   dragMode: "NONE",
-// },
 
 newAngle = calculator.HelperExpression({ latex: "n_{ewAngleClick}" });
 newAngle.observe("numericValue", () => {
