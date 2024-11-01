@@ -1,9 +1,9 @@
 const options = {
   settingsMenu: false,
-  expressions: false,
+  expressions: true,
   zoomButtons: false,
   showResetButtonOnGraphpaper: true,
-  lockViewport: true,
+  lockViewport: false,
   pointsOfInterest: false,
   authorFeatures: false,
   trace: false,
