@@ -379,7 +379,7 @@ gabrielCheck.id = "gabrielCheck";
 gabrielCheck.name = "gabrielCheck";
 gabrielCheck.value = "Gabriel's Rectangles";
 gabrielCheck.style.position = "absolute";
-gabrielCheck.style.top = `${gabrielCheckTop}px`;
+gabrielCheck.style.top = `${gabrielCheckTop + 1}px`;
 gabrielCheck.style.left = `${gabrielCheckLeft}px`;
 gabrielCheck.style.transform = "scale(1.25)";
 
@@ -387,7 +387,7 @@ const gabrielLabel = document.createElement("label");
 gabrielLabel.htmlFor = "gabrielCheck";
 gabrielLabel.appendChild(document.createTextNode("Gabriel's Rectangles"));
 gabrielLabel.style.position = "absolute";
-gabrielLabel.style.top = `${gabrielCheckTop}px`;
+gabrielLabel.style.top = `${gabrielCheckTop + 1}px`;
 gabrielLabel.style.left = `${gabrielCheckLeft + 25}px`;
 gabrielLabel.style["font-size"] = "1rem";
 gabrielLabel.style["font-family"] = "sans-serif";
