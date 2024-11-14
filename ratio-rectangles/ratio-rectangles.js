@@ -342,7 +342,7 @@ const state = {
   },
   geometryToolbar: {
     toolbar: "custom",
-    toolbarState: { line: { visible: true } },
+    toolbarState: { line: { visible: true }, point: { visible: true } },
   },
 };
 
