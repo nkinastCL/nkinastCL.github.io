@@ -1,0 +1,214 @@
+body {
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  display: flex;
+}
+
+.roboto-thin {
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.roboto-light {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.roboto-regular {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.roboto-medium {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.roboto-bold {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.roboto-black {
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+.roboto-thin-italic {
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+  font-style: italic;
+}
+
+.roboto-light-italic {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.roboto-regular-italic {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.roboto-medium-italic {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.roboto-bold-italic {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.roboto-black-italic {
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-style: italic;
+}
+
+#content {
+  flex: 1;
+  padding: 20px;
+}
+
+#calculator {
+  width: 750px;
+  height: 500px;
+}
+
+#sidebar {
+  width: 500px;
+  background-color: #f3f3f3;
+  transition: transform 0.3s ease;
+  transform: translateX(100%);
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+  border-left: 1px solid #cccccc;
+}
+
+#sidebar h2 {
+  padding: 20px;
+  margin: 0;
+  background-color: #ddd;
+  font-family: "Roboto", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+#sidebar p {
+  padding-bottom: 6px;
+  margin: 0;
+}
+
+#sidebar.collapsed {
+  transform: translateX(100%);
+}
+
+#sidebar.expanded {
+  transform: translateX(0);
+}
+
+#sidebar .settings-group {
+  padding: 1rem;
+}
+
+#sidebar .dimensions-container {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 1rem;
+}
+
+#sidebar .dimensions-container.height {
+  padding-left: 1rem;
+}
+#sidebar h3 {
+  margin: 0;
+  padding: 4px;
+}
+
+#sidebar input {
+  font-size: medium;
+  width: 3.5rem;
+  height: fit-content;
+  padding: 6px;
+}
+
+#sidebar input[type="checkbox"] {
+  accent-color: #2a4cc2;
+}
+
+.sidebar-content {
+  height: 70vh;
+}
+
+#toggleSidebar {
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  z-index: 1000;
+  background-color: #2a4cc2;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#toggleSidebar:hover {
+  background-color: #0056b3;
+}
+
+.opt-checkbox {
+  display: flex;
+  align-items: center;
+}
+
+label {
+  margin-left: -10px;
+}
+
+.button-group {
+  padding: 0.5rem;
+  margin-left: 0.5rem;
+}
+
+.button-group button {
+  font-size: 14px;
+  font-weight: 400;
+  padding: 12px 20px;
+  border-radius: 8px;
+  background-color: #2a4cc2;
+  color: white;
+  box-shadow: none;
+  border: none;
+}
+
+.button-group button:hover {
+  background-color: #1f2eb5;
+  cursor: pointer;
+}
+
+.button-group button:disabled {
+  background-color: #cdd7fb;
+}
+
+.save-load-buttons {
+  margin-left: 1rem;
+}
+/* input[type="checkbox"] {
+} */
