@@ -1,6 +1,6 @@
-// window.onbeforeunload = function() {
-//     return true;
-// };
+window.onbeforeunload = function() {
+    return true;
+};
 
 const toggleSidebarButton = document.getElementById("toggleSidebar");
 let globalScript;
