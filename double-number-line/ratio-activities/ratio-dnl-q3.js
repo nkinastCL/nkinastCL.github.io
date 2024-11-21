@@ -534,7 +534,7 @@ const state = {
 
 calculator.setState(state);
 
-numTicks = calculator.HelperExpression({ latex: "n_{ticks}" });
+const numTicks = calculator.HelperExpression({ latex: "n_{ticks}" });
 numTicks.observe("numericValue", () => {
   const n = numTicks.numericValue;
   calculator.setMathBounds({
@@ -544,5 +544,3 @@ numTicks.observe("numericValue", () => {
     top: 0.75 * n,
   });
 });
-
-elt.addEventListener("dragend");

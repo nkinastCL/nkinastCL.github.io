@@ -3,6 +3,7 @@
 // };
 
 const toggleSidebarButton = document.getElementById("toggleSidebar");
+let globalScript;
 
 toggleSidebarButton.addEventListener("click", () => {
   const sidebar = document.getElementById("sidebar");
@@ -63,6 +64,20 @@ const loadStateFromClipboard = document.getElementById(
 );
 const loadStateFromFile = document.getElementById("load-state-from-file");
 const stateFile = document.getElementById("state-file");
+const loadTemplate = document.getElementById("load-template");
+const selectTemplate = document.getElementById("select-template");
+
+loadTemplate.addEventListener("click", () => {
+  if (selectTemplate.value) {
+    fetchTemplate(`templates/${selectTemplate.value}.JSON`).then((stateObj) => {
+      calculator.setState(stateObj["state"], stateObj["options"]);
+      if (stateObj.script) {
+        globalScript = stateObj.script;
+        executeScript(stateObj.script);
+      }
+    });
+  }
+});
 
 copyState.addEventListener("click", () => {
   const stateObj = getStateObj();
@@ -121,6 +136,9 @@ function getStateObj() {
   const newState = calculator.getState();
   const newOptions = calculator.graphSettings;
   const stateObj = { state: newState, options: newOptions };
+  if (globalScript) {
+    stateObj.script = globalScript;
+  }
   return stateObj;
 }
 
@@ -134,11 +152,34 @@ function loadStateFromJSON(event) {
   reader.onload = function (e) {
     try {
       const stateObj = JSON.parse(e.target.result);
-      calculator.setState(stateObj["state"], stateObj["options"]);
+      calculator.setState(stateObj.state, stateObj.options);
+      if (stateObj.script) {
+        globalScript = stateObj.script;
+        executeScript(stateObj.script);
+      }
     } catch (error) {
       alert("Error parsing JSON file: " + error.message);
     }
   };
 
   reader.readAsText(file);
+}
+
+function executeScript(scriptContent) {
+  const scriptElement = document.createElement("script");
+  scriptElement.textContent = scriptContent;
+  document.body.appendChild(scriptElement);
+}
+
+async function fetchTemplate(filePath) {
+  try {
+    const response = await fetch(filePath);
+    if (!response.ok) {
+      throw new Error(`HTTP error status: ${response.status}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error loading Desmos state:", error);
+  }
 }
