@@ -73,7 +73,7 @@ loadTemplate.addEventListener("click", () => {
       calculator.setState(stateObj["state"], stateObj["options"]);
       if (stateObj.script) {
         globalScript = stateObj.script;
-        executeScript(stateObj.script);
+        updateScript(stateObj.script);
       }
     });
   }
@@ -155,7 +155,7 @@ function loadStateFromJSON(event) {
       calculator.setState(stateObj.state, stateObj.options);
       if (stateObj.script) {
         globalScript = stateObj.script;
-        executeScript(stateObj.script);
+        updateScript(stateObj.script);
       }
     } catch (error) {
       alert("Error parsing JSON file: " + error.message);
@@ -165,10 +165,18 @@ function loadStateFromJSON(event) {
   reader.readAsText(file);
 }
 
-function executeScript(scriptContent) {
-  const scriptElement = document.createElement("script");
-  scriptElement.textContent = scriptContent;
-  document.body.appendChild(scriptElement);
+function updateScript(scriptContent) {
+  const oldScript = document.getElementById("desmosScript");
+  if (oldScript) {
+    oldScript.remove();
+  }
+
+  const newScript = document.createElement("script");
+  newScript.id = "desmosScript";
+  newScript.textContent = ` (function() {
+      ${scriptContent}
+    })();`;
+  document.body.appendChild(newScript);
 }
 
 async function fetchTemplate(filePath) {
@@ -207,6 +215,7 @@ openModalButton.onclick = () => {
 closeModalButton.onclick = () => {
   modal.style.display = "none";
   globalScript = editor.getValue();
+  updateScript(globalScript);
 };
 
 // Close modal when clicking outside the modal content
@@ -214,5 +223,6 @@ window.onclick = (event) => {
   if (event.target === modal) {
     modal.style.display = "none";
     globalScript = editor.getValue();
+    updateScript(globalScript);
   }
 };
