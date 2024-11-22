@@ -1,6 +1,6 @@
-window.onbeforeunload = function() {
-    return true;
-};
+// window.onbeforeunload = function() {
+//     return true;
+// };
 
 const toggleSidebarButton = document.getElementById("toggleSidebar");
 let globalScript;
@@ -183,3 +183,36 @@ async function fetchTemplate(filePath) {
     console.error("Error loading Desmos state:", error);
   }
 }
+
+const modal = document.getElementById("modal");
+const openModalButton = document.getElementById("open-code-editor");
+const closeModalButton = document.getElementById("closeModal");
+const editor = ace.edit("editor");
+
+// Initialize the Monaco Editor once the modal opens
+let editorInitialized = false;
+openModalButton.onclick = () => {
+  modal.style.display = "block";
+  if (!editorInitialized) {
+    editor.setTheme("ace/theme/eclipse");
+    editor.session.setMode("ace/mode/javascript");
+    editorInitialized = true;
+  }
+  if (globalScript) {
+    editor.setValue(globalScript, -1);
+  }
+};
+
+// Close modal when the close button is clicked
+closeModalButton.onclick = () => {
+  modal.style.display = "none";
+  globalScript = editor.getValue();
+};
+
+// Close modal when clicking outside the modal content
+window.onclick = (event) => {
+  if (event.target === modal) {
+    modal.style.display = "none";
+    globalScript = editor.getValue();
+  }
+};
