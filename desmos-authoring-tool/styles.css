@@ -232,9 +232,10 @@ label {
   overflow: hidden;
   background-color: rgba(0, 0, 0, 0.5);
 }
+
 .modal-content {
   background-color: #000000;
-  margin: 10% auto;
+  margin: 2rem auto;
   /* padding: 4px; */
   border: 1px solid #888;
   width: 800px;
