@@ -2,81 +2,26 @@ body {
   margin: 0;
   font-family: "Roboto", sans-serif;
   font-weight: 400;
-  font-style: normal;
   display: flex;
 }
 
-.roboto-thin {
+[class^="roboto-"] {
   font-family: "Roboto", sans-serif;
-  font-weight: 100;
-  font-style: normal;
 }
 
-.roboto-light {
-  font-family: "Roboto", sans-serif;
-  font-weight: 300;
-  font-style: normal;
-}
+.roboto-thin { font-weight: 100; }
+.roboto-light { font-weight: 300; }
+.roboto-regular { font-weight: 400; }
+.roboto-medium { font-weight: 500; }
+.roboto-bold { font-weight: 700; }
+.roboto-black { font-weight: 900; }
 
-.roboto-regular {
-  font-family: "Roboto", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
-.roboto-medium {
-  font-family: "Roboto", sans-serif;
-  font-weight: 500;
-  font-style: normal;
-}
-
-.roboto-bold {
-  font-family: "Roboto", sans-serif;
-  font-weight: 700;
-  font-style: normal;
-}
-
-.roboto-black {
-  font-family: "Roboto", sans-serif;
-  font-weight: 900;
-  font-style: normal;
-}
-
-.roboto-thin-italic {
-  font-family: "Roboto", sans-serif;
-  font-weight: 100;
-  font-style: italic;
-}
-
-.roboto-light-italic {
-  font-family: "Roboto", sans-serif;
-  font-weight: 300;
-  font-style: italic;
-}
-
-.roboto-regular-italic {
-  font-family: "Roboto", sans-serif;
-  font-weight: 400;
-  font-style: italic;
-}
-
-.roboto-medium-italic {
-  font-family: "Roboto", sans-serif;
-  font-weight: 500;
-  font-style: italic;
-}
-
-.roboto-bold-italic {
-  font-family: "Roboto", sans-serif;
-  font-weight: 700;
-  font-style: italic;
-}
-
-.roboto-black-italic {
-  font-family: "Roboto", sans-serif;
-  font-weight: 900;
-  font-style: italic;
-}
+.roboto-thin-italic { font-weight: 100; font-style: italic; }
+.roboto-light-italic { font-weight: 300; font-style: italic; }
+.roboto-regular-italic { font-weight: 400; font-style: italic; }
+.roboto-medium-italic { font-weight: 500; font-style: italic; }
+.roboto-bold-italic { font-weight: 700; font-style: italic; }
+.roboto-black-italic { font-weight: 900; font-style: italic; }
 
 #content {
   flex: 1;
@@ -105,9 +50,7 @@ body {
   padding: 20px;
   margin: 0;
   background-color: #ddd;
-  font-family: "Roboto", sans-serif;
   font-weight: 600;
-  font-style: normal;
 }
 
 #sidebar p {
@@ -136,6 +79,7 @@ body {
 #sidebar .dimensions-container.height {
   padding-left: 1rem;
 }
+
 #sidebar h3 {
   margin: 0;
   padding: 4px;
@@ -144,7 +88,6 @@ body {
 #sidebar input {
   font-size: medium;
   width: 3.5rem;
-  height: fit-content;
   padding: 6px;
 }
 
@@ -165,11 +108,12 @@ body {
   cursor: pointer;
 }
 
-.select-template label {
-  margin-left: 1rem;
-}
 #toggleSidebar:hover {
   background-color: #0056b3;
+}
+
+.select-template label {
+  margin-left: 1rem;
 }
 
 .opt-checkbox {
@@ -193,7 +137,6 @@ label {
   border-radius: 8px;
   background-color: #2a4cc2;
   color: white;
-  box-shadow: none;
   border: none;
 }
 
@@ -229,19 +172,18 @@ label {
   top: 0;
   width: 100%;
   height: 100%;
-  overflow: hidden;
   background-color: rgba(0, 0, 0, 0.5);
 }
 
 .modal-content {
   background-color: #000000;
   margin: 2rem auto;
-  /* padding: 4px; */
   border: 1px solid #888;
   width: 800px;
   height: 600px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
+
 .close {
   float: right;
   color: #ffffff;
@@ -249,6 +191,12 @@ label {
   font-weight: bold;
   cursor: pointer;
   padding-right: 8px;
+}
+
+.close:hover,
+.close:focus {
+  color: rgb(146, 146, 146);
+  text-decoration: none;
 }
 
 #modalTitle {
@@ -259,16 +207,9 @@ label {
   font-weight: 400;
   padding: 6px 12px 12px;
 }
-.close:hover,
-.close:focus {
-  color: rgb(146, 146, 146);
-  text-decoration: none;
-}
+
 #editor {
   width: 100%;
   height: 100%;
   font-size: 14px;
 }
-
-/* input[type="checkbox"] {
-} */
