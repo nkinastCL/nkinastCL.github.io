@@ -106,7 +106,7 @@ downloadState.addEventListener("click", () => {
 loadStateFromClipboard.addEventListener("click", () => {
   navigator.clipboard.readText().then((result) => {
     const stateObj = JSON.parse(result);
-    calculator.setState(stateObj["state"], stateObj["options"]);
+    calculator.setState(stateObj.state, stateObj.options);
   });
 
   loadStateFromClipboard.disabled = true;
