@@ -8,6 +8,7 @@ const options = {
   authorFeatures: true,
   trace: false,
   keypad: false,
+  pasteGrapheLink: true,
   colors: {
     blueA: "#a0b0ea",
     blueB: "#4264d9",
