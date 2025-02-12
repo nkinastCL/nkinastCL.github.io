@@ -94,7 +94,6 @@ copyState.addEventListener("click", () => {
 });
 
 downloadState.addEventListener("click", () => {
-  const stateObj = getStateObj();
   const date = new Date();
   const timestamp = `${
     date.toString().split(" ")[0]
@@ -103,6 +102,7 @@ downloadState.addEventListener("click", () => {
     "Save As...",
     `My Awesome Desmos Interactive ${timestamp}`
   );
+  const stateObj = getStateObj(fileName);
   if (fileName !== null) {
     downloadJSON(stateObj, fileName);
   }
@@ -137,12 +137,19 @@ function downloadJSON(obj, fileName) {
   URL.revokeObjectURL(url);
 }
 
-function getStateObj() {
+function getStateObj(id) {
   const newState = calculator.getState();
   const newOptions = calculator.graphSettings;
-  const stateObj = { state: newState, options: newOptions };
+  const stateObj = {
+    id: id,
+    rootElement: {
+      type: "clic-desmos",
+      initialState: newState,
+      initialSettings: newOptions,
+    },
+  };
   if (globalScript) {
-    stateObj.script = globalScript;
+    stateObj.rootElement.initialScript = globalScript;
   }
   return stateObj;
 }

@@ -1,0 +1,10 @@
+{
+    "name": "CLS Tools",
+    "description": "Tools for CLS developers",
+    "version": "0.1",
+    "manifest_version": 3,
+    "action": {
+        "default_popup": "cls.html",
+        "default_icon": "cls-icon.png"
+    }
+}
