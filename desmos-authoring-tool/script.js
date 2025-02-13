@@ -75,10 +75,10 @@ const selectTemplate = document.getElementById("select-template");
 loadTemplate.addEventListener("click", () => {
   if (selectTemplate.value) {
     fetchTemplate(`templates/${selectTemplate.value}.JSON`).then((stateObj) => {
-      calculator.setState(stateObj["state"], stateObj["options"]);
-      if (stateObj.script) {
-        globalScript = stateObj.script;
-        updateScript(stateObj.script);
+      calculator.setState(stateObj.rootElement.initialState, stateObj.rootElement.initialSettings);
+      if (stateObj.rootElement.initialScript) {
+        globalScript = stateObj.rootElement.initialScript;
+        updateScript(stateObj.rootElement.initialScript);
       }
     });
   }
@@ -111,7 +111,7 @@ downloadState.addEventListener("click", () => {
 loadStateFromClipboard.addEventListener("click", () => {
   navigator.clipboard.readText().then((result) => {
     const stateObj = JSON.parse(result);
-    calculator.setState(stateObj.state, stateObj.options);
+    calculator.setState(stateObj.rootElement.initialState, stateObj.rootElement.initialSettings);
   });
 
   loadStateFromClipboard.disabled = true;
@@ -164,10 +164,10 @@ function loadStateFromJSON(event) {
   reader.onload = function (e) {
     try {
       const stateObj = JSON.parse(e.target.result);
-      calculator.setState(stateObj.state, stateObj.options);
-      if (stateObj.script) {
-        globalScript = stateObj.script;
-        updateScript(stateObj.script);
+      calculator.setState(stateObj.rootElement.initialState, stateObj.rootElement.initialSettings);
+      if (stateObj.rootElement.initialScript) {
+        globalScript = stateObj.rootElement.initialScript;
+        updateScript(stateObj.rootElement.initialScript);
       }
     } catch (error) {
       alert("Error parsing JSON file: " + error.message);
