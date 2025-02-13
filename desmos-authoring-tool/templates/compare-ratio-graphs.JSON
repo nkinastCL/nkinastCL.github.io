@@ -1,7 +1,7 @@
 {
   "id": "compare-ratio-graphs",
   "rootElement": {
-    "state": {
+    "initialState": {
       "version": 11,
       "randomSeed": "de4271dc291fdc653980de0329f787ec",
       "graph": {
@@ -192,7 +192,7 @@
         ]
       }
     },
-    "options": {
+    "initialSettings": {
       "__observers": {},
       "__eventObservers": {},
       "__oldProperties": {
