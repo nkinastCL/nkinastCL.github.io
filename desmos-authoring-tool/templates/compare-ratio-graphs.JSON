@@ -1,328 +1,331 @@
 {
-  "state": {
-    "version": 11,
-    "randomSeed": "de4271dc291fdc653980de0329f787ec",
-    "graph": {
-      "viewport": {
-        "xmin": -1.3477242320128693,
-        "ymin": -5.971045038148915,
-        "xmax": 6.089775767987133,
-        "ymax": 79.02895496185118
+  "id": "compare-ratio-graphs",
+  "rootElement": {
+    "state": {
+      "version": 11,
+      "randomSeed": "de4271dc291fdc653980de0329f787ec",
+      "graph": {
+        "viewport": {
+          "xmin": -1.3477242320128693,
+          "ymin": -5.971045038148915,
+          "xmax": 6.089775767987133,
+          "ymax": 79.02895496185118
+        },
+        "xAxisStep": 1,
+        "yAxisStep": 10,
+        "xAxisMinorSubdivisions": 1,
+        "yAxisMinorSubdivisions": 1,
+        "squareAxes": false
       },
+      "expressions": {
+        "list": [
+          {
+            "type": "expression",
+            "id": "6",
+            "color": "#002195",
+            "latex": "x_{range}=7"
+          },
+          {
+            "type": "expression",
+            "id": "7",
+            "color": "#031371",
+            "latex": "y_{range}=80"
+          },
+          {
+            "type": "expression",
+            "id": "13",
+            "color": "#200761",
+            "latex": "x_{width}=750"
+          },
+          {
+            "type": "expression",
+            "id": "15",
+            "color": "#26996F",
+            "latex": "y_{width}=500"
+          },
+          {
+            "type": "expression",
+            "id": "29",
+            "color": "#E7820C",
+            "latex": "x_{yScale}=\\frac{y_{range}}{x_{range}}"
+          },
+          {
+            "type": "expression",
+            "id": "8",
+            "color": "#CDB4F3",
+            "latex": "s_{quareScale}=x_{yScale}\\cdot\\frac{x_{width}}{y_{width}}"
+          },
+          {
+            "type": "expression",
+            "id": "30",
+            "color": "#DF6705",
+            "latex": "s_{quareSize}=.175"
+          },
+          {
+            "type": "expression",
+            "id": "18",
+            "color": "#00613C",
+            "latex": "m_{akeSquare}\\left(x_{pos},y_{pos}\\right)=\\operatorname{polygon}\\left(s_{quareSize}\\cdot\\left[0,1,1,0\\right]+x_{pos}-.5\\cdot s_{quareSize},s_{quareSize}\\cdot\\left[0,0,1,1\\right]\\cdot s_{quareScale}+y_{pos}-.5\\cdot s_{quareSize}\\cdot s_{quareScale}\\right)"
+          },
+          {
+            "type": "expression",
+            "id": "51",
+            "color": "#00452B",
+            "latex": "s_{quareX}=\\left[1,2,3,4\\right]"
+          },
+          {
+            "type": "expression",
+            "id": "52",
+            "color": "#F0959C",
+            "latex": "s_{quareY}=\\left[5,10,15,20\\right]"
+          },
+          {
+            "type": "expression",
+            "id": "53",
+            "color": "#26996F",
+            "latex": "m_{akeSquare}\\left(s_{quareX}\\left[n\\right],s_{quareY}\\left[n\\right]\\right)\\operatorname{for}n=\\left[1,2,3,4\\right]",
+            "lines": false,
+            "fillOpacity": "1"
+          },
+          {
+            "type": "expression",
+            "id": "35",
+            "color": "#4264d9",
+            "latex": "\\left(x-c_{ircle1}\\left[1\\right]\\right)^{2}+\\left(\\frac{y-c_{ircle1}\\left[2\\right]}{s_{quareScale}}\\right)^{2}\\le\\left(0.5\\cdot s_{quareSize}\\right)^{2}",
+            "lines": false,
+            "fillOpacity": "1"
+          },
+          {
+            "type": "expression",
+            "id": "47",
+            "color": "#4264d9",
+            "latex": "\\left(x-c_{ircle2}\\left[1\\right]\\right)^{2}+\\left(\\frac{y-c_{ircle2}\\left[2\\right]}{s_{quareScale}}\\right)^{2}\\le\\left(0.5\\cdot s_{quareSize}\\right)^{2}",
+            "lines": false,
+            "fillOpacity": "1"
+          },
+          {
+            "type": "expression",
+            "id": "48",
+            "color": "#4264d9",
+            "latex": "\\left(x-c_{ircle3}\\left[1\\right]\\right)^{2}+\\left(\\frac{y-c_{ircle3}\\left[2\\right]}{s_{quareScale}}\\right)^{2}\\le\\left(0.5\\cdot s_{quareSize}\\right)^{2}",
+            "lines": false,
+            "fillOpacity": "1"
+          },
+          {
+            "type": "expression",
+            "id": "49",
+            "color": "#4264d9",
+            "latex": "\\left(x-c_{ircle4}\\left[1\\right]\\right)^{2}+\\left(\\frac{y-c_{ircle4}\\left[2\\right]}{s_{quareScale}}\\right)^{2}\\le\\left(0.5\\cdot s_{quareSize}\\right)^{2}",
+            "lines": false,
+            "fillOpacity": "1"
+          },
+          {
+            "type": "expression",
+            "id": "41",
+            "color": "#8150CF",
+            "latex": "c_{ircle1}=\\left[1,15\\right]"
+          },
+          {
+            "type": "expression",
+            "id": "43",
+            "color": "#5421AC",
+            "latex": "c_{ircle2}=\\left[2,30\\right]"
+          },
+          {
+            "type": "expression",
+            "id": "45",
+            "color": "#200761",
+            "latex": "c_{ircle3}=\\left[3,45\\right]"
+          },
+          {
+            "type": "expression",
+            "id": "46",
+            "color": "#8AD3B9",
+            "latex": "c_{ircle4}=\\left[4,60\\right]"
+          },
+          {
+            "type": "expression",
+            "id": "40",
+            "color": "#CDB4F3",
+            "latex": "m_{akeTriangle}\\left(x_{pos},y_{pos}\\right)=\\operatorname{polygon}\\left(s_{quareSize}\\cdot\\left[0,1,0.5\\right]+x_{pos}-.5\\cdot s_{quareSize},s_{quareSize}\\cdot s_{quareScale}\\cdot\\left[0,0,\\frac{\\sqrt{3}}{2}\\right]+y_{pos}-.35\\cdot s_{quareSize}\\cdot s_{quareScale}\\right)"
+          },
+          {
+            "type": "expression",
+            "id": "58",
+            "color": "#F9DFB8",
+            "latex": "t_{riX}=\\left[1,2,3,4\\right]"
+          },
+          {
+            "type": "expression",
+            "id": "59",
+            "color": "#F2B558",
+            "latex": "t_{riY}=\\left[10,20,30,40\\right]"
+          },
+          {
+            "type": "expression",
+            "id": "55",
+            "color": "#EC9511",
+            "latex": "m_{akeTriangle}\\left(t_{riX}\\left[n\\right],t_{riY}\\left[n\\right]\\right)\\operatorname{for}n=\\left[1,2,3,4\\right]",
+            "lines": false,
+            "fillOpacity": "1"
+          },
+          {
+            "type": "expression",
+            "id": "60",
+            "color": "#EC9511"
+          },
+          {
+            "type": "expression",
+            "id": "56",
+            "color": "#A10712"
+          },
+          {
+            "type": "expression",
+            "id": "37",
+            "color": "#1f2eb5"
+          },
+          {
+            "type": "expression",
+            "id": "19",
+            "color": "#00452B"
+          }
+        ]
+      }
+    },
+    "options": {
+      "__observers": {},
+      "__eventObservers": {},
+      "__oldProperties": {
+        "showGrid": false,
+        "showXAxis": false,
+        "showYAxis": false,
+        "xAxisStep": 0,
+        "yAxisStep": 1,
+        "xAxisMinorSubdivisions": 0,
+        "yAxisMinorSubdivisions": 0,
+        "xAxisLabel": "x",
+        "xAxisNumbers": false,
+        "yAxisNumbers": false,
+        "polarNumbers": false,
+        "randomSeed": "4943ed09d4ef09dc29b4fe67eaad4e92",
+        "expressions": true,
+        "settingsMenu": false,
+        "lockViewport": true,
+        "expressionsCollapsed": false
+      },
+      "__propertyComparators": {},
+      "guid": "guid_271593_1736126038195_9",
+      "showGrid": true,
+      "showXAxis": true,
+      "showYAxis": true,
       "xAxisStep": 1,
       "yAxisStep": 10,
+      "xAxisScale": "linear",
+      "yAxisScale": "linear",
       "xAxisMinorSubdivisions": 1,
       "yAxisMinorSubdivisions": 1,
-      "squareAxes": false
-    },
-    "expressions": {
-      "list": [
-        {
-          "type": "expression",
-          "id": "6",
-          "color": "#002195",
-          "latex": "x_{range}=7"
-        },
-        {
-          "type": "expression",
-          "id": "7",
-          "color": "#031371",
-          "latex": "y_{range}=80"
-        },
-        {
-          "type": "expression",
-          "id": "13",
-          "color": "#200761",
-          "latex": "x_{width}=750"
-        },
-        {
-          "type": "expression",
-          "id": "15",
-          "color": "#26996F",
-          "latex": "y_{width}=500"
-        },
-        {
-          "type": "expression",
-          "id": "29",
-          "color": "#E7820C",
-          "latex": "x_{yScale}=\\frac{y_{range}}{x_{range}}"
-        },
-        {
-          "type": "expression",
-          "id": "8",
-          "color": "#CDB4F3",
-          "latex": "s_{quareScale}=x_{yScale}\\cdot\\frac{x_{width}}{y_{width}}"
-        },
-        {
-          "type": "expression",
-          "id": "30",
-          "color": "#DF6705",
-          "latex": "s_{quareSize}=.175"
-        },
-        {
-          "type": "expression",
-          "id": "18",
-          "color": "#00613C",
-          "latex": "m_{akeSquare}\\left(x_{pos},y_{pos}\\right)=\\operatorname{polygon}\\left(s_{quareSize}\\cdot\\left[0,1,1,0\\right]+x_{pos}-.5\\cdot s_{quareSize},s_{quareSize}\\cdot\\left[0,0,1,1\\right]\\cdot s_{quareScale}+y_{pos}-.5\\cdot s_{quareSize}\\cdot s_{quareScale}\\right)"
-        },
-        {
-          "type": "expression",
-          "id": "51",
-          "color": "#00452B",
-          "latex": "s_{quareX}=\\left[1,2,3,4\\right]"
-        },
-        {
-          "type": "expression",
-          "id": "52",
-          "color": "#F0959C",
-          "latex": "s_{quareY}=\\left[5,10,15,20\\right]"
-        },
-        {
-          "type": "expression",
-          "id": "53",
-          "color": "#26996F",
-          "latex": "m_{akeSquare}\\left(s_{quareX}\\left[n\\right],s_{quareY}\\left[n\\right]\\right)\\operatorname{for}n=\\left[1,2,3,4\\right]",
-          "lines": false,
-          "fillOpacity": "1"
-        },
-        {
-          "type": "expression",
-          "id": "35",
-          "color": "#4264d9",
-          "latex": "\\left(x-c_{ircle1}\\left[1\\right]\\right)^{2}+\\left(\\frac{y-c_{ircle1}\\left[2\\right]}{s_{quareScale}}\\right)^{2}\\le\\left(0.5\\cdot s_{quareSize}\\right)^{2}",
-          "lines": false,
-          "fillOpacity": "1"
-        },
-        {
-          "type": "expression",
-          "id": "47",
-          "color": "#4264d9",
-          "latex": "\\left(x-c_{ircle2}\\left[1\\right]\\right)^{2}+\\left(\\frac{y-c_{ircle2}\\left[2\\right]}{s_{quareScale}}\\right)^{2}\\le\\left(0.5\\cdot s_{quareSize}\\right)^{2}",
-          "lines": false,
-          "fillOpacity": "1"
-        },
-        {
-          "type": "expression",
-          "id": "48",
-          "color": "#4264d9",
-          "latex": "\\left(x-c_{ircle3}\\left[1\\right]\\right)^{2}+\\left(\\frac{y-c_{ircle3}\\left[2\\right]}{s_{quareScale}}\\right)^{2}\\le\\left(0.5\\cdot s_{quareSize}\\right)^{2}",
-          "lines": false,
-          "fillOpacity": "1"
-        },
-        {
-          "type": "expression",
-          "id": "49",
-          "color": "#4264d9",
-          "latex": "\\left(x-c_{ircle4}\\left[1\\right]\\right)^{2}+\\left(\\frac{y-c_{ircle4}\\left[2\\right]}{s_{quareScale}}\\right)^{2}\\le\\left(0.5\\cdot s_{quareSize}\\right)^{2}",
-          "lines": false,
-          "fillOpacity": "1"
-        },
-        {
-          "type": "expression",
-          "id": "41",
-          "color": "#8150CF",
-          "latex": "c_{ircle1}=\\left[1,15\\right]"
-        },
-        {
-          "type": "expression",
-          "id": "43",
-          "color": "#5421AC",
-          "latex": "c_{ircle2}=\\left[2,30\\right]"
-        },
-        {
-          "type": "expression",
-          "id": "45",
-          "color": "#200761",
-          "latex": "c_{ircle3}=\\left[3,45\\right]"
-        },
-        {
-          "type": "expression",
-          "id": "46",
-          "color": "#8AD3B9",
-          "latex": "c_{ircle4}=\\left[4,60\\right]"
-        },
-        {
-          "type": "expression",
-          "id": "40",
-          "color": "#CDB4F3",
-          "latex": "m_{akeTriangle}\\left(x_{pos},y_{pos}\\right)=\\operatorname{polygon}\\left(s_{quareSize}\\cdot\\left[0,1,0.5\\right]+x_{pos}-.5\\cdot s_{quareSize},s_{quareSize}\\cdot s_{quareScale}\\cdot\\left[0,0,\\frac{\\sqrt{3}}{2}\\right]+y_{pos}-.35\\cdot s_{quareSize}\\cdot s_{quareScale}\\right)"
-        },
-        {
-          "type": "expression",
-          "id": "58",
-          "color": "#F9DFB8",
-          "latex": "t_{riX}=\\left[1,2,3,4\\right]"
-        },
-        {
-          "type": "expression",
-          "id": "59",
-          "color": "#F2B558",
-          "latex": "t_{riY}=\\left[10,20,30,40\\right]"
-        },
-        {
-          "type": "expression",
-          "id": "55",
-          "color": "#EC9511",
-          "latex": "m_{akeTriangle}\\left(t_{riX}\\left[n\\right],t_{riY}\\left[n\\right]\\right)\\operatorname{for}n=\\left[1,2,3,4\\right]",
-          "lines": false,
-          "fillOpacity": "1"
-        },
-        {
-          "type": "expression",
-          "id": "60",
-          "color": "#EC9511"
-        },
-        {
-          "type": "expression",
-          "id": "56",
-          "color": "#A10712"
-        },
-        {
-          "type": "expression",
-          "id": "37",
-          "color": "#1f2eb5"
-        },
-        {
-          "type": "expression",
-          "id": "19",
-          "color": "#00452B"
-        }
-      ]
+      "xAxisArrowMode": "NONE",
+      "yAxisArrowMode": "NONE",
+      "xAxisLabel": "",
+      "yAxisLabel": "",
+      "xAxisNumbers": true,
+      "yAxisNumbers": true,
+      "polarMode": false,
+      "polarNumbers": true,
+      "degreeMode": false,
+      "randomSeed": "de4271dc291fdc653980de0329f787ec",
+      "restrictGridToFirstQuadrant": false,
+      "userLockedViewport": false,
+      "keypad": false,
+      "graphpaper": true,
+      "expressions": false,
+      "settingsMenu": true,
+      "zoomButtons": false,
+      "showResetButtonOnGraphpaper": true,
+      "expressionsTopbar": true,
+      "capExpressionSize": false,
+      "pointsOfInterest": false,
+      "trace": false,
+      "border": true,
+      "lockViewport": false,
+      "expressionsCollapsed": true,
+      "authorFeatures": true,
+      "authorMode": true,
+      "advancedStyling": false,
+      "images": true,
+      "folders": true,
+      "notes": true,
+      "sliders": true,
+      "links": true,
+      "qwertyKeyboard": true,
+      "restrictedFunctions": false,
+      "forceEnableGeometryFunctions": false,
+      "pasteGraphLink": false,
+      "pasteTableData": true,
+      "clearIntoDegreeMode": false,
+      "autosize": true,
+      "plotSingleVariableImplicitEquations": true,
+      "plotImplicits": true,
+      "plotInequalities": true,
+      "colors": {
+        "blueA": "#a0b0ea",
+        "blueB": "#4264d9",
+        "blueC": "#2a4cc2",
+        "blueD": "#1f2eb5",
+        "blueE": "#002195",
+        "blueF": "#031371",
+        "purpleA": "#CDB4F3",
+        "purpleB": "#8150CF",
+        "purpleC": "#6B31C7",
+        "purpleD": "#5421AC",
+        "purpleE": "#39128D",
+        "purpleF": "#200761",
+        "greenA": "#8AD3B9",
+        "greenB": "#26996F",
+        "greenC": "#008756",
+        "greenD": "#03784C",
+        "greenE": "#00613C",
+        "greenF": "#00452B",
+        "redA": "#F0959C",
+        "redB": "#E64A56",
+        "redC": "#E12A38",
+        "redD": "#C4212C",
+        "redE": "#A10712",
+        "redF": "#6E303A",
+        "yellowA": "#F9DFB8",
+        "yellowB": "#F2B558",
+        "yellowC": "#EC9511",
+        "yellowD": "#E7820C",
+        "yellowE": "#DF6705",
+        "yellowF": "#B55100",
+        "black": "#000000",
+        "white": "#ffffff"
+      },
+      "invertedColors": false,
+      "functionDefinition": true,
+      "projectorMode": false,
+      "decimalToFraction": true,
+      "fontSize": 16,
+      "language": "en",
+      "backgroundColor": "#fff",
+      "textColor": "#000",
+      "distributions": true,
+      "brailleMode": "none",
+      "sixKeyInput": false,
+      "brailleControls": true,
+      "zoomFit": true,
+      "forceLogModeRegressions": false,
+      "defaultLogModeRegressions": false,
+      "actions": true,
+      "audio": true,
+      "logScales": true,
+      "translucentSurfaces": false,
+      "perspectiveDistortion": 1,
+      "showKeyboardShortcutsInTooltips": false,
+      "tone": true,
+      "muted": true,
+      "showPerformanceMeter": false,
+      "increaseLabelPrecision": false
     }
-  },
-  "options": {
-    "__observers": {},
-    "__eventObservers": {},
-    "__oldProperties": {
-      "showGrid": false,
-      "showXAxis": false,
-      "showYAxis": false,
-      "xAxisStep": 0,
-      "yAxisStep": 1,
-      "xAxisMinorSubdivisions": 0,
-      "yAxisMinorSubdivisions": 0,
-      "xAxisLabel": "x",
-      "xAxisNumbers": false,
-      "yAxisNumbers": false,
-      "polarNumbers": false,
-      "randomSeed": "4943ed09d4ef09dc29b4fe67eaad4e92",
-      "expressions": true,
-      "settingsMenu": false,
-      "lockViewport": true,
-      "expressionsCollapsed": false
-    },
-    "__propertyComparators": {},
-    "guid": "guid_271593_1736126038195_9",
-    "showGrid": true,
-    "showXAxis": true,
-    "showYAxis": true,
-    "xAxisStep": 1,
-    "yAxisStep": 10,
-    "xAxisScale": "linear",
-    "yAxisScale": "linear",
-    "xAxisMinorSubdivisions": 1,
-    "yAxisMinorSubdivisions": 1,
-    "xAxisArrowMode": "NONE",
-    "yAxisArrowMode": "NONE",
-    "xAxisLabel": "",
-    "yAxisLabel": "",
-    "xAxisNumbers": true,
-    "yAxisNumbers": true,
-    "polarMode": false,
-    "polarNumbers": true,
-    "degreeMode": false,
-    "randomSeed": "de4271dc291fdc653980de0329f787ec",
-    "restrictGridToFirstQuadrant": false,
-    "userLockedViewport": false,
-    "keypad": false,
-    "graphpaper": true,
-    "expressions": false,
-    "settingsMenu": true,
-    "zoomButtons": false,
-    "showResetButtonOnGraphpaper": true,
-    "expressionsTopbar": true,
-    "capExpressionSize": false,
-    "pointsOfInterest": false,
-    "trace": false,
-    "border": true,
-    "lockViewport": false,
-    "expressionsCollapsed": true,
-    "authorFeatures": true,
-    "authorMode": true,
-    "advancedStyling": false,
-    "images": true,
-    "folders": true,
-    "notes": true,
-    "sliders": true,
-    "links": true,
-    "qwertyKeyboard": true,
-    "restrictedFunctions": false,
-    "forceEnableGeometryFunctions": false,
-    "pasteGraphLink": false,
-    "pasteTableData": true,
-    "clearIntoDegreeMode": false,
-    "autosize": true,
-    "plotSingleVariableImplicitEquations": true,
-    "plotImplicits": true,
-    "plotInequalities": true,
-    "colors": {
-      "blueA": "#a0b0ea",
-      "blueB": "#4264d9",
-      "blueC": "#2a4cc2",
-      "blueD": "#1f2eb5",
-      "blueE": "#002195",
-      "blueF": "#031371",
-      "purpleA": "#CDB4F3",
-      "purpleB": "#8150CF",
-      "purpleC": "#6B31C7",
-      "purpleD": "#5421AC",
-      "purpleE": "#39128D",
-      "purpleF": "#200761",
-      "greenA": "#8AD3B9",
-      "greenB": "#26996F",
-      "greenC": "#008756",
-      "greenD": "#03784C",
-      "greenE": "#00613C",
-      "greenF": "#00452B",
-      "redA": "#F0959C",
-      "redB": "#E64A56",
-      "redC": "#E12A38",
-      "redD": "#C4212C",
-      "redE": "#A10712",
-      "redF": "#6E303A",
-      "yellowA": "#F9DFB8",
-      "yellowB": "#F2B558",
-      "yellowC": "#EC9511",
-      "yellowD": "#E7820C",
-      "yellowE": "#DF6705",
-      "yellowF": "#B55100",
-      "black": "#000000",
-      "white": "#ffffff"
-    },
-    "invertedColors": false,
-    "functionDefinition": true,
-    "projectorMode": false,
-    "decimalToFraction": true,
-    "fontSize": 16,
-    "language": "en",
-    "backgroundColor": "#fff",
-    "textColor": "#000",
-    "distributions": true,
-    "brailleMode": "none",
-    "sixKeyInput": false,
-    "brailleControls": true,
-    "zoomFit": true,
-    "forceLogModeRegressions": false,
-    "defaultLogModeRegressions": false,
-    "actions": true,
-    "audio": true,
-    "logScales": true,
-    "translucentSurfaces": false,
-    "perspectiveDistortion": 1,
-    "showKeyboardShortcutsInTooltips": false,
-    "tone": true,
-    "muted": true,
-    "showPerformanceMeter": false,
-    "increaseLabelPrecision": false
   }
 }
