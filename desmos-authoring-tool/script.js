@@ -116,6 +116,7 @@ copyState.addEventListener('click', () => {
 });
 
 downloadState.addEventListener('click', () => {
+  calculator.clearHistory();
   const date = new Date();
   const timestamp = `${
     date.toString().split(' ')[0]
@@ -165,10 +166,17 @@ function downloadJSON(obj, fileName) {
 function getStateObj(id) {
   const newState = calculator.getState();
   const newOptions = calculator.graphSettings;
+  const calculatorType =
+    newState.graph.product === 'graphing-3d'
+      ? '3d'
+      : newState.graph.product === 'geometry-calculator'
+      ? 'geometry'
+      : 'graphing';
   const stateObj = {
     id: id,
     rootElement: {
       type: 'clic-desmos',
+      calculator: calculatorType,
       initialState: newState,
       initialSettings: newOptions,
     },
