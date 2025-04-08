@@ -179,6 +179,10 @@ label {
   background-color: #cdd7fb;
 }
 
+#set-bounds {
+  margin: 1rem .5rem;
+}
+
 .save-load-buttons {
   margin-left: 1rem;
 }

@@ -20,6 +20,11 @@ toggleSidebarButton.addEventListener('click', () => {
 
 const inputWidth = document.getElementById('input-width');
 const inputHeight = document.getElementById('input-height');
+const inputXMin = document.getElementById('input-xmin');
+const inputXMax = document.getElementById('input-xmax');
+const inputYMin = document.getElementById('input-ymin');
+const inputYMax = document.getElementById('input-ymax');
+const setBoundsButton = document.getElementById('set-bounds');
 const calc = document.getElementById('calculator');
 
 inputWidth.addEventListener('input', () => {
@@ -30,6 +35,20 @@ inputWidth.addEventListener('input', () => {
 inputHeight.addEventListener('input', () => {
   const newHeight = inputHeight.value;
   calc.style.height = `${newHeight}px`;
+});
+
+setBoundsButton.addEventListener('click', () => {
+  const xMin = parseFloat(inputXMin.value);
+  const xMax = parseFloat(inputXMax.value);
+  const yMin = parseFloat(inputYMin.value);
+  const yMax = parseFloat(inputYMax.value);
+  const newBounds = {
+    left: xMin,
+    right: xMax,
+    bottom: yMin,
+    top: yMax,
+  };
+  calculator.setMathBounds(newBounds);
 });
 
 const optShowExpressions = document.getElementById('opt-show-expressions');
