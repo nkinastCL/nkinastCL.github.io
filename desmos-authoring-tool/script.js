@@ -25,6 +25,7 @@ const inputXMax = document.getElementById('input-xmax');
 const inputYMin = document.getElementById('input-ymin');
 const inputYMax = document.getElementById('input-ymax');
 const setBoundsButton = document.getElementById('set-bounds');
+const clearHistoryButton = document.getElementById('clear-history');
 const calc = document.getElementById('calculator');
 
 inputWidth.addEventListener('input', () => {
@@ -51,11 +52,34 @@ setBoundsButton.addEventListener('click', () => {
   calculator.setMathBounds(newBounds);
 });
 
+clearHistoryButton.addEventListener('click', () => {
+  calculator.clearHistory();
+});
+
+const optShowAxesGrid = document.getElementById('opt-show-axes-grid');
+optShowAxesGrid.addEventListener('change', () => {
+  calculator.updateSettings({
+    showGrid: optShowAxesGrid.checked,
+    showXAxis: optShowAxesGrid.checked,
+    showYAxis: optShowAxesGrid.checked,
+    xAxisNumbers: optShowAxesGrid.checked,
+    yAxisNumbers: optShowAxesGrid.checked,
+    xAxisArrowMode: optShowAxesGrid.checked ? 'BOTH' : 'NONE',
+    yAxisArrowMode: optShowAxesGrid.checked ? 'BOTH' : 'NONE',
+  });
+});
+
 const optShowExpressions = document.getElementById('opt-show-expressions');
 optShowExpressions.addEventListener('change', () => {
   calculator.setOptions({
     expressions: optShowExpressions.checked,
-    expressionsCollapsed: !optShowExpressions.checked,
+  });
+});
+
+const optShowExpTopbar = document.getElementById('opt-exp-topbar');
+optShowExpTopbar.addEventListener('change', () => {
+  calculator.updateSettings({
+    expressionsTopbar: optShowExpTopbar.checked,
   });
 });
 

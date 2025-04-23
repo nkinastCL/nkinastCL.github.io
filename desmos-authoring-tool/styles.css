@@ -112,7 +112,7 @@ body {
 
 #sidebar h3 {
   margin: 0;
-  padding: 4px;
+  padding: 2px;
 }
 
 #sidebar input {
@@ -180,7 +180,11 @@ label {
 }
 
 #set-bounds {
-  margin: 1rem .5rem;
+  margin: 1rem 0.5rem;
+}
+
+#clear-history {
+  margin-left: 0.5rem;
 }
 
 .save-load-buttons {
