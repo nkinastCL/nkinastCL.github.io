@@ -69,6 +69,13 @@ optShowAxesGrid.addEventListener('change', () => {
   });
 });
 
+const optFirstQuadrant = document.getElementById('opt-first-quadrant');
+optFirstQuadrant.addEventListener('change', () => {
+  calculator.updateSettings({
+    restrictGridToFirstQuadrant: optFirstQuadrant.checked,
+  });
+});
+
 const optShowExpressions = document.getElementById('opt-show-expressions');
 optShowExpressions.addEventListener('change', () => {
   calculator.setOptions({
