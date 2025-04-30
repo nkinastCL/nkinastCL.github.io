@@ -199,7 +199,7 @@ function getStateObj(id) {
   const newOptions = calculator.graphSettings;
   const calculatorType =
     newState.graph.product === 'graphing-3d'
-      ? '3d'
+      ? '3D'
       : newState.graph.product === 'geometry-calculator'
       ? 'geometry'
       : 'graphing';
