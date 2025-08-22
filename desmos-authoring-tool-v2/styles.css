@@ -1,0 +1,446 @@
+/* styles.css — minimal light theme + componentized sidebar */
+
+:root {
+  --bg: #f7f8fb;
+  --surface: #ffffff;
+  --surface-2: #f3f4f7;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --primary: #2563eb;
+  --primary-contrast: #ffffff;
+  --ring: 0 0 0 3px rgba(37, 99, 235, 0.35);
+  --radius: 12px;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.08);
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+
+  --sidebar-w: 400px;
+}
+
+/* Reset-ish */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: 'Roboto', system-ui, -apple-system, Segoe UI, Roboto, Arial,
+    sans-serif;
+  font-weight: 400;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.45;
+}
+
+/* Layout */
+.app {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: start;
+  padding: var(--space-6);
+  gap: var(--space-6);
+}
+
+/* Calculator canvas */
+.calc {
+  width: 750px;
+  height: 500px;
+  background: var(--surface);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: var(--sidebar-w);
+  height: 100dvh;
+  background: var(--surface);
+  border-left: 1px solid #e5e7eb;
+  box-shadow: var(--shadow-sm);
+  transform: translateX(0);
+  transition: transform 200ms ease, opacity 200ms ease;
+  display: flex;
+  flex-direction: column;
+}
+.sidebar.is-closed {
+  transform: translateX(100%);
+}
+.sidebar__header {
+  padding: var(--space-4);
+  border-bottom: 1px solid #eef2f7;
+}
+.sidebar__title {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+.sidebar__content {
+  padding: var(--space-4);
+  overflow: auto;
+}
+
+/* Toggle button (floating so it stays when collapsed) */
+.sidebar__toggle {
+  position: fixed;
+  right: var(--space-4);
+  top: var(--space-4);
+  z-index: 1000;
+  border: 0;
+  border-radius: 999px;
+  width: 40px;
+  height: 40px;
+  background: var(--surface);
+  box-shadow: var(--shadow-lg);
+  color: var(--text);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: transform 150ms ease, box-shadow 150ms ease;
+}
+.sidebar__toggle:hover {
+  transform: translateY(-1px);
+}
+.sidebar__toggle:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-lg), var(--ring);
+}
+
+/* Panels */
+.panel {
+  background: var(--surface);
+  border: 1px solid #eceff4;
+  border-radius: var(--radius);
+  padding: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+.panel__title {
+  margin: 0 0 var(--space-4);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+/* Forms */
+.form {
+  display: grid;
+  gap: var(--space-3);
+}
+.grid-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.span-2 {
+  grid-column: span 2;
+}
+.field {
+  display: grid;
+  gap: var(--space-2);
+}
+.field > span:first-child {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.field .unit {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+input[type='number'],
+select {
+  width: 100%;
+  appearance: none;
+  padding: 8px 10px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background: #fff;
+  color: var(--text);
+  font-size: 0.95rem;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+input[type='number']:focus,
+select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: var(--ring);
+}
+
+/* Option list (auto-generated switches) */
+.option-list {
+  display: grid;
+  gap: 6px;
+}
+.option {
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+}
+.option input[type='checkbox'] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary);
+  cursor: pointer;
+}
+.option__label {
+  font-size: 0.95rem;
+}
+
+/* Buttons */
+.btn {
+  --btn-bg: var(--primary);
+  --btn-fg: var(--primary-contrast);
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  border: none;
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: transform 120ms ease, box-shadow 120ms ease, opacity 120ms ease;
+}
+.btn:hover {
+  transform: translateY(-1px);
+}
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.btn-ghost {
+  --btn-bg: #edf2ff;
+  --btn-fg: var(--primary);
+}
+.actions {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+}
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-2);
+}
+.muted {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* Floating code editor button */
+.fab {
+  position: fixed;
+  bottom: var(--space-5);
+  right: calc(var(--space-4) + 44px); /* avoids overlap with the toggle */
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+  border: none;
+  background: var(--surface);
+  box-shadow: var(--shadow-lg);
+  background-image: url('images/code.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+}
+.fab:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-lg), var(--ring);
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(15, 23, 42, 0.4);
+  z-index: 1000;
+}
+.modal-content {
+  background: var(--surface);
+  width: min(900px, 92vw);
+  height: min(650px, 86vh);
+  margin: 6vh auto 0;
+  border-radius: 14px;
+  box-shadow: var(--shadow-lg);
+  display: grid;
+  grid-template-rows: auto 1fr;
+  overflow: hidden;
+}
+.modal-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid #eef2f7;
+}
+.modal-title {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    'Liberation Mono', 'Courier New', monospace;
+  color: var(--muted);
+  font-weight: 500;
+}
+.close {
+  background: transparent;
+  border: 0;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+  color: #6b7280;
+}
+.close:hover {
+  color: #374151;
+}
+.editor#editor {
+  width: 100%;
+  height: 100%;
+}
+
+/* Collapsible group header */
+.collapse {
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  gap: 10px;
+  text-align: left;
+  cursor: pointer;
+}
+.collapse:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+  border-radius: 8px;
+  padding: 2px; /* subtle focus ring breathing room */
+}
+
+/* Chevron */
+.chev {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  transform: rotate(0deg);
+  transition: transform 150ms ease;
+  position: relative;
+}
+.chev::before {
+  content: '';
+  position: absolute;
+  inset: 3px 3px 3px 3px;
+  border: solid currentColor;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+.collapse[aria-expanded='true'] .chev {
+  transform: rotate(90deg);
+}
+
+.collapse__title {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+.collapse__desc {
+  grid-column: 2 / -1;
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-top: 2px;
+}
+
+/* Collapsible content */
+.collapse__content {
+  margin-top: var(--space-4);
+}
+
+/* Search section */
+.option-search {
+  margin-top: var(--space-4);
+  display: grid;
+  gap: var(--space-3);
+}
+
+.option-search input[type='search'] {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background: #fff;
+  font-size: 0.95rem;
+}
+
+.option-search__results {
+  display: grid;
+  gap: 6px;
+  max-height: 260px; /* keeps list tidy */
+  overflow: auto;
+  padding-right: 2px; /* avoid scrollbar overlap */
+  border-left: 2px solid #eef2f7;
+  padding-left: var(--space-3);
+}
+
+.setting-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.setting-item__name {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono',
+    monospace;
+  font-size: 0.9rem;
+}
+
+.setting-item__badge {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+/* Sliders in Math Bounds */
+.range-group {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.field--range input[type='range'] {
+  width: 100%;
+}
+
+.range-meta {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+}
+
+.range-meta output {
+  min-width: 1.2ch;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.range-meta .hint {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+/* Accessibility: reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .sidebar,
+  .sidebar__toggle,
+  .btn {
+    transition: none !important;
+  }
+}
