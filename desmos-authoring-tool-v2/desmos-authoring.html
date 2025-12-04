@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+
+    <!-- Desmos API -->
+    <script
+      src="https://www.desmos.com/api/v1.11/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"
+      defer
+    ></script>
+
+    <!-- Fonts + Styles -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+
+    <title>Desmos Authoring Tool</title>
+  </head>
+  <body>
+    <main class="app">
+      <div id="calculator" class="calc" aria-label="Desmos Graph Area"></div>
+
+      <button
+        id="toggleSidebar"
+        class="sidebar__toggle"
+        aria-controls="sidebar"
+        aria-expanded="true"
+        title="Collapse settings"
+      >
+        ⟨
+      </button>
+
+      <aside
+        id="sidebar"
+        class="sidebar is-open"
+        aria-label="Settings Sidebar"
+        data-state="open"
+      >
+        <header class="sidebar__header">
+          <h2 class="sidebar__title">Settings</h2>
+        </header>
+
+        <div class="sidebar__content">
+          <!-- Options (auto-rendered from JS registry) -->
+          <section class="panel">
+            <h3 class="panel__title">Options</h3>
+            <div
+              id="optionsList"
+              class="option-list"
+              role="group"
+              aria-label="Graph options"
+            ></div>
+            <div class="option-search">
+              <label class="field">
+                <span>Search all Boolean settings</span>
+                <input
+                  type="search"
+                  id="settings-search"
+                  placeholder="e.g. keypad, trace, brailleControls…"
+                  autocomplete="off"
+                  aria-controls="settings-results"
+                />
+              </label>
+
+              <div
+                id="settings-results"
+                class="option-search__results"
+                role="listbox"
+                aria-label="Settings results"
+              ></div>
+            </div>
+
+            <div class="actions">
+              <button id="clear-history" class="btn btn-ghost">
+                Clear History
+              </button>
+            </div>
+          </section>
+
+          <!-- Bounds -->
+          <section class="panel">
+            <h3 class="panel__title">Math Bounds</h3>
+            <form id="boundsForm" class="form grid-2" autocomplete="off">
+              <label class="field">
+                <span>X Min</span>
+                <input type="number" id="input-xmin" step="any" value="-10" />
+              </label>
+              <label class="field">
+                <span>X Max</span>
+                <input type="number" id="input-xmax" step="any" value="10" />
+              </label>
+              <label class="field">
+                <span>Y Min</span>
+                <input type="number" id="input-ymin" step="any" value="-10" />
+              </label>
+              <label class="field">
+                <span>Y Max</span>
+                <input type="number" id="input-ymax" step="any" value="10" />
+              </label>
+              <div class="actions span-2">
+                <button id="set-bounds" class="btn" type="submit">
+                  Set Bounds
+                </button>
+              </div>
+              <!-- Minor grid subdivisions -->
+              <div
+                class="span-2 range-group"
+                aria-label="Minor grid subdivisions"
+              >
+                <label class="field field--range">
+                  <span>X‑axis minor subdivisions</span>
+                  <input
+                    type="range"
+                    id="input-xminor"
+                    min="0"
+                    max="5"
+                    step="1"
+                    value="0"
+                    list="minor-ticks"
+                    aria-describedby="hint-minor"
+                  />
+                  <div class="range-meta">
+                    <output id="out-xminor" for="input-xminor">0</output>
+                    <span id="hint-minor" class="hint"
+                      >0 = auto, 1 = majors only</span
+                    >
+                  </div>
+                </label>
+
+                <label class="field field--range">
+                  <span>Y‑axis minor subdivisions</span>
+                  <input
+                    type="range"
+                    id="input-yminor"
+                    min="0"
+                    max="5"
+                    step="1"
+                    value="0"
+                    list="minor-ticks"
+                    aria-describedby="hint-minor"
+                  />
+                  <div class="range-meta">
+                    <output id="out-yminor" for="input-yminor">0</output>
+                  </div>
+                </label>
+
+                <!-- tick marks for the sliders -->
+                <datalist id="minor-ticks">
+                  <option value="0"></option>
+                  <option value="1"></option>
+                  <option value="2"></option>
+                  <option value="3"></option>
+                  <option value="4"></option>
+                  <option value="5"></option>
+                </datalist>
+              </div>
+            </form>
+          </section>
+
+          <!-- Save & Load -->
+          <section class="panel">
+            <h3 class="panel__title">Save &amp; Load</h3>
+
+            <!-- <div class="row">
+              <label for="select-template">Template</label>
+              <select id="select-template" name="select-template">
+                <option value="double-number-line">double-number-line</option>
+                <option value="tape-diagram">tape-diagram</option>
+                <option value="stacked-bar-graph">stacked-bar-graph</option>
+                <option value="compare-ratio-graphs">
+                  compare-ratio-graphs
+                </option>
+              </select>
+              <button id="load-template" class="btn">Load</button>
+            </div> -->
+
+            <div class="row">
+              <span class="muted">Save state:</span>
+              <button id="copy-state" class="btn btn-ghost">Copy</button>
+              <button id="download-state" class="btn">Download JSON</button>
+            </div>
+
+            <div class="row">
+              <span class="muted">Load state from:</span>
+              <button id="load-state-from-clipboard" class="btn btn-ghost">
+                Clipboard
+              </button>
+              <button id="load-state-from-file" class="btn btn-ghost">
+                JSON
+              </button>
+              <input type="file" id="state-file" accept=".json" hidden />
+            </div>
+          </section>
+        </div>
+
+        <!-- Floating action button for the code editor -->
+        <button
+          id="open-code-editor"
+          class="fab"
+          aria-label="Open code editor"
+          title="Open code editor"
+        ></button>
+      </aside>
+    </main>
+
+    <!-- Script Editor Modal -->
+    <div
+      class="modal"
+      id="modal"
+      aria-hidden="true"
+      role="dialog"
+      aria-label="Script Editor"
+    >
+      <div class="modal-content">
+        <div class="modal-bar">
+          <span id="modalTitle" class="modal-title">Script Editor</span>
+          <button id="closeModal" class="close" aria-label="Close editor">
+            &times;
+          </button>
+        </div>
+        <div class="editor" id="editor"></div>
+      </div>
+    </div>
+
+    <!-- Your existing Desmos instance bootstrap -->
+    <script src="desmos-instance.js" defer></script>
+
+    <!-- Ace Editor -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.36.5/ace.js"
+      charset="utf-8"
+      defer
+    ></script>
+
+    <!-- App Logic -->
+    <script src="script.js" defer></script>
+  </body>
+</html>
