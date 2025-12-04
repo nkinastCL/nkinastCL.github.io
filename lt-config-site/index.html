@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>JSON Configuration Manager</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      :root {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        color-scheme: light dark;
+      }
+
+      body {
+        margin: 0;
+        padding: 1.5rem;
+        background: #f5f5f5;
+      }
+
+      h1 {
+        margin-top: 0;
+        margin-bottom: 0.25rem;
+      }
+
+      .subtitle {
+        color: #555;
+        margin-bottom: 1.5rem;
+        font-size: 0.95rem;
+      }
+
+      .layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+        gap: 1.5rem;
+        align-items: start;
+      }
+
+      .card {
+        background: #fff;
+        border-radius: 0.75rem;
+        padding: 1rem 1.25rem;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+      }
+
+      .card h2 {
+        margin: 0 0 0.5rem;
+        font-size: 1.1rem;
+      }
+
+      .section-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .section-header small {
+        color: #666;
+        font-size: 0.8rem;
+      }
+
+      form {
+        display: grid;
+        gap: 0.75rem;
+      }
+
+      .grid-3 {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.5rem;
+      }
+
+      .grid-2 {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.5rem;
+      }
+
+      label {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: #333;
+        display: block;
+        margin-bottom: 0.2rem;
+      }
+
+      input[type="text"],
+      select,
+      textarea {
+        width: 100%;
+        box-sizing: border-box;
+        font: inherit;
+        padding: 0.35rem 0.4rem;
+        border-radius: 0.45rem;
+        border: 1px solid #ccc;
+        background: #fafafa;
+        transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
+      }
+
+      input[type="text"]:focus,
+      select:focus,
+      textarea:focus {
+        outline: none;
+        border-color: #2563eb;
+        box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.25);
+        background: #fff;
+      }
+
+      textarea {
+        min-height: 160px;
+        resize: vertical;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+          "Liberation Mono", "Courier New", monospace;
+        font-size: 0.85rem;
+      }
+
+      input[type="file"] {
+        font-size: 0.8rem;
+      }
+
+      .btn-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        align-items: center;
+        margin-top: 0.25rem;
+      }
+
+      .btn {
+        border: none;
+        border-radius: 999px;
+        font-size: 0.85rem;
+        padding: 0.35rem 0.9rem;
+        cursor: pointer;
+        background: #2563eb;
+        color: white;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
+        transition: transform 0.05s ease-out, box-shadow 0.05s ease-out,
+          background 0.15s;
+        box-shadow: 0 3px 10px rgba(37, 99, 235, 0.3);
+      }
+
+      .btn:hover {
+        background: #1d4ed8;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+      }
+
+      .btn:active {
+        transform: translateY(0px);
+        box-shadow: 0 1px 4px rgba(37, 99, 235, 0.3);
+      }
+
+      .btn.secondary {
+        background: #e5e7eb;
+        color: #111827;
+        box-shadow: none;
+      }
+
+      .btn.secondary:hover {
+        background: #d1d5db;
+      }
+
+      .btn.small {
+        padding: 0.15rem 0.6rem;
+        font-size: 0.75rem;
+        box-shadow: none;
+      }
+
+      .btn.danger {
+        background: #dc2626;
+        box-shadow: 0 3px 10px rgba(220, 38, 38, 0.3);
+      }
+
+      .btn.danger:hover {
+        background: #b91c1c;
+      }
+
+      .message {
+        font-size: 0.8rem;
+        margin-top: 0.25rem;
+      }
+
+      .message.error {
+        color: #b91c1c;
+      }
+
+      .message.success {
+        color: #059669;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.8rem;
+      }
+
+      thead {
+        background: #f3f4f6;
+      }
+
+      th,
+      td {
+        padding: 0.35rem 0.4rem;
+        text-align: left;
+        border-bottom: 1px solid #e5e7eb;
+        vertical-align: middle;
+      }
+
+      th {
+        font-weight: 600;
+        font-size: 0.75rem;
+        color: #374151;
+        white-space: nowrap;
+      }
+
+      tbody tr:nth-child(even) {
+        background: #fafafa;
+      }
+
+      tbody tr:hover {
+        background: #e5f0ff;
+      }
+
+      .filters input {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.35rem;
+        border-radius: 999px;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.05rem 0.45rem;
+        border-radius: 999px;
+        font-size: 0.7rem;
+        background: #e5e7eb;
+        color: #374151;
+      }
+
+      .pill.version {
+        background: #dbeafe;
+        color: #1e40af;
+        font-weight: 600;
+      }
+
+      .timestamp {
+        font-size: 0.7rem;
+        color: #6b7280;
+        white-space: nowrap;
+      }
+
+      .meta-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        margin-bottom: 0.4rem;
+      }
+
+      .meta-item {
+        font-size: 0.75rem;
+        padding: 0.15rem 0.45rem;
+        border-radius: 999px;
+        background: #f3f4f6;
+        color: #374151;
+      }
+
+      .meta-item strong {
+        font-weight: 600;
+      }
+
+      #edit-panel {
+        margin-top: 0.25rem;
+        display: none;
+      }
+
+      #edit-panel.active {
+        display: block;
+      }
+
+      @media (max-width: 900px) {
+        .layout {
+          grid-template-columns: minmax(0, 1fr);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>JSON Configuration Manager</h1>
+    <div class="subtitle">
+      Upload, edit, and retrieve JSON config files categorized by
+      <strong>Type</strong>, <strong>State</strong>, <strong>Grade</strong>,
+      <strong>Module</strong>, <strong>Lesson</strong>. Versions auto-increment
+      when replaced or edited.
+    </div>
+
+    <div class="layout">
+      <!-- LEFT: Upload / Create -->
+      <section class="card">
+        <div class="section-header">
+          <h2>Create / Upload Config</h2>
+          <small>New record or replace existing category → bumps version</small>
+        </div>
+
+        <form id="upload-form">
+          <div class="grid-3">
+            <div>
+              <label for="type-input">Type</label>
+              <input
+                id="type-input"
+                type="text"
+                required
+                placeholder="e.g. LessonConfig"
+              />
+            </div>
+            <div>
+              <label for="state-input">State</label>
+              <input
+                id="state-input"
+                type="text"
+                required
+                placeholder="e.g. TX, PA"
+              />
+            </div>
+            <div>
+              <label for="grade-input">Grade</label>
+              <input
+                id="grade-input"
+                type="text"
+                required
+                placeholder="e.g. 6, 7, 8"
+              />
+            </div>
+          </div>
+
+          <div class="grid-3">
+            <div>
+              <label for="module-input">Module</label>
+              <input
+                id="module-input"
+                type="text"
+                required
+                placeholder="e.g. M1"
+              />
+            </div>
+            <div>
+              <label for="lesson-input">Lesson</label>
+              <input
+                id="lesson-input"
+                type="text"
+                required
+                placeholder="e.g. L03"
+              />
+            </div>
+            <div>
+              <label>Version</label>
+              <div class="pill version" id="next-version-pill">
+                Auto (starts at 1)
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <label for="json-file">Upload JSON file (optional)</label>
+            <input id="json-file" type="file" accept=".json,application/json" />
+            <div class="message">
+              If both file and text are provided, file content wins.
+            </div>
+          </div>
+
+          <div>
+            <label for="json-text">Or paste JSON</label>
+            <textarea
+              id="json-text"
+              placeholder='{ "example": true }'
+            ></textarea>
+          </div>
+
+          <div class="btn-row">
+            <button type="submit" class="btn">Save Config</button>
+            <button type="button" class="btn secondary" id="clear-form-btn">
+              Clear Form
+            </button>
+          </div>
+
+          <div class="message error" id="upload-error"></div>
+          <div class="message success" id="upload-success"></div>
+        </form>
+      </section>
+
+      <!-- RIGHT: List & Edit -->
+      <section class="card">
+        <div class="section-header">
+          <h2>Stored Configs</h2>
+          <div class="btn-row">
+            <button type="button" class="btn secondary" id="clear-filters-btn">
+              Clear Filters
+            </button>
+            <button type="button" class="btn secondary" id="export-all-btn">
+              Export All
+            </button>
+          </div>
+        </div>
+
+        <div class="filters" style="margin-bottom: 0.5rem">
+          <table>
+            <thead>
+              <tr>
+                <th>
+                  Type<br />
+                  <input id="filter-type" type="text" placeholder="Filter" />
+                </th>
+                <th>
+                  State<br />
+                  <input id="filter-state" type="text" placeholder="Filter" />
+                </th>
+                <th>
+                  Grade<br />
+                  <input id="filter-grade" type="text" placeholder="Filter" />
+                </th>
+                <th>
+                  Module<br />
+                  <input id="filter-module" type="text" placeholder="Filter" />
+                </th>
+                <th>
+                  Lesson<br />
+                  <input id="filter-lesson" type="text" placeholder="Filter" />
+                </th>
+                <th>Version</th>
+                <th>Updated</th>
+                <th style="min-width: 140px">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="config-tbody">
+              <!-- Rows rendered by JS -->
+            </tbody>
+          </table>
+        </div>
+
+        <div id="list-message" class="message"></div>
+
+        <!-- Edit panel -->
+        <div id="edit-panel">
+          <hr style="margin: 0.75rem 0" />
+          <h2 style="font-size: 1rem; margin-bottom: 0.35rem">
+            View / Edit Selected Config
+          </h2>
+          <div id="edit-meta" class="meta-row"></div>
+          <div
+            class="message"
+            id="edit-version-note"
+            style="margin-bottom: 0.25rem"
+          >
+            Saving will <strong>increment the version</strong> and overwrite
+            this config.
+          </div>
+          <textarea id="edit-json"></textarea>
+          <input type="hidden" id="edit-id" />
+          <div class="btn-row">
+            <button type="button" class="btn" id="save-edit-btn">
+              Save New Version
+            </button>
+            <button type="button" class="btn secondary" id="cancel-edit-btn">
+              Close
+            </button>
+          </div>
+          <div class="message error" id="edit-error"></div>
+          <div class="message success" id="edit-success"></div>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      const STORAGE_KEY = "jsonConfigManager.v1";
+      let configs = [];
+
+      function loadConfigs() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          const parsed = raw ? JSON.parse(raw) : [];
+          return Array.isArray(parsed) ? parsed : [];
+        } catch (e) {
+          console.error("Failed to load configs:", e);
+          return [];
+        }
+      }
+
+      function saveConfigs() {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(configs));
+        } catch (e) {
+          console.error("Failed to save configs:", e);
+        }
+      }
+
+      function formatTimestamp(iso) {
+        if (!iso) return "";
+        const d = new Date(iso);
+        if (isNaN(d.getTime())) return iso;
+        return d.toLocaleString();
+      }
+
+      function findConfigByCategories(type, state, grade, module, lesson) {
+        return configs.find(
+          (c) =>
+            c.type === type &&
+            c.state === state &&
+            c.grade === grade &&
+            c.module === module &&
+            c.lesson === lesson
+        );
+      }
+
+      function computeNextVersion(type, state, grade, module, lesson) {
+        const existing = findConfigByCategories(
+          type,
+          state,
+          grade,
+          module,
+          lesson
+        );
+        return existing ? (existing.version || 1) + 1 : 1;
+      }
+
+      function updateNextVersionPill() {
+        const type = document.getElementById("type-input").value.trim();
+        const state = document.getElementById("state-input").value.trim();
+        const grade = document.getElementById("grade-input").value.trim();
+        const module = document.getElementById("module-input").value.trim();
+        const lesson = document.getElementById("lesson-input").value.trim();
+
+        const pill = document.getElementById("next-version-pill");
+
+        if (!type || !state || !grade || !module || !lesson) {
+          pill.textContent = "Auto (starts at 1)";
+          return;
+        }
+
+        const nextVersion = computeNextVersion(
+          type,
+          state,
+          grade,
+          module,
+          lesson
+        );
+        pill.textContent = `Will save as v${nextVersion}`;
+      }
+
+      function setUploadMessage(type, msg) {
+        const errorEl = document.getElementById("upload-error");
+        const successEl = document.getElementById("upload-success");
+        errorEl.textContent = "";
+        successEl.textContent = "";
+        if (type === "error") errorEl.textContent = msg;
+        if (type === "success") successEl.textContent = msg;
+      }
+
+      function setEditMessage(type, msg) {
+        const errorEl = document.getElementById("edit-error");
+        const successEl = document.getElementById("edit-success");
+        errorEl.textContent = "";
+        successEl.textContent = "";
+        if (type === "error") errorEl.textContent = msg;
+        if (type === "success") successEl.textContent = msg;
+      }
+
+      function setListMessage(msg) {
+        document.getElementById("list-message").textContent = msg || "";
+      }
+
+      function resetUploadForm() {
+        document.getElementById("upload-form").reset();
+        document.getElementById("json-text").value = "";
+        document.getElementById("json-file").value = "";
+        setUploadMessage(null, "");
+        updateNextVersionPill();
+      }
+
+      function renderTable() {
+        const tbody = document.getElementById("config-tbody");
+        tbody.innerHTML = "";
+
+        const fType = document
+          .getElementById("filter-type")
+          .value.trim()
+          .toLowerCase();
+        const fState = document
+          .getElementById("filter-state")
+          .value.trim()
+          .toLowerCase();
+        const fGrade = document
+          .getElementById("filter-grade")
+          .value.trim()
+          .toLowerCase();
+        const fModule = document
+          .getElementById("filter-module")
+          .value.trim()
+          .toLowerCase();
+        const fLesson = document
+          .getElementById("filter-lesson")
+          .value.trim()
+          .toLowerCase();
+
+        const filtered = configs
+          .slice()
+          .sort((a, b) => {
+            // Sort by type, state, grade, module, lesson
+            const keys = ["type", "state", "grade", "module", "lesson"];
+            for (const k of keys) {
+              const av = (a[k] || "").toLowerCase();
+              const bv = (b[k] || "").toLowerCase();
+              if (av < bv) return -1;
+              if (av > bv) return 1;
+            }
+            return 0;
+          })
+          .filter((c) => {
+            const matchesType =
+              !fType || (c.type || "").toLowerCase().includes(fType);
+            const matchesState =
+              !fState || (c.state || "").toLowerCase().includes(fState);
+            const matchesGrade =
+              !fGrade || (c.grade || "").toLowerCase().includes(fGrade);
+            const matchesModule =
+              !fModule || (c.module || "").toLowerCase().includes(fModule);
+            const matchesLesson =
+              !fLesson || (c.lesson || "").toLowerCase().includes(fLesson);
+            return (
+              matchesType &&
+              matchesState &&
+              matchesGrade &&
+              matchesModule &&
+              matchesLesson
+            );
+          });
+
+        if (filtered.length === 0) {
+          const tr = document.createElement("tr");
+          const td = document.createElement("td");
+          td.colSpan = 8;
+          td.textContent =
+            configs.length === 0
+              ? "No configs stored yet."
+              : "No configs match the current filters.";
+          td.style.textAlign = "center";
+          tr.appendChild(td);
+          tbody.appendChild(tr);
+          setListMessage("");
+          return;
+        }
+
+        filtered.forEach((c) => {
+          const tr = document.createElement("tr");
+
+          const tdType = document.createElement("td");
+          tdType.textContent = c.type || "";
+          tr.appendChild(tdType);
+
+          const tdState = document.createElement("td");
+          tdState.textContent = c.state || "";
+          tr.appendChild(tdState);
+
+          const tdGrade = document.createElement("td");
+          tdGrade.textContent = c.grade || "";
+          tr.appendChild(tdGrade);
+
+          const tdModule = document.createElement("td");
+          tdModule.textContent = c.module || "";
+          tr.appendChild(tdModule);
+
+          const tdLesson = document.createElement("td");
+          tdLesson.textContent = c.lesson || "";
+          tr.appendChild(tdLesson);
+
+          const tdVersion = document.createElement("td");
+          const vPill = document.createElement("span");
+          vPill.className = "pill version";
+          vPill.textContent = "v" + (c.version || 1);
+          tdVersion.appendChild(vPill);
+          tr.appendChild(tdVersion);
+
+          const tdUpdated = document.createElement("td");
+          const ts = document.createElement("span");
+          ts.className = "timestamp";
+          ts.textContent = formatTimestamp(c.updatedAt);
+          tdUpdated.appendChild(ts);
+          tr.appendChild(tdUpdated);
+
+          const tdActions = document.createElement("td");
+          const viewBtn = document.createElement("button");
+          viewBtn.className = "btn small";
+          viewBtn.textContent = "View / Edit";
+          viewBtn.dataset.action = "view";
+          viewBtn.dataset.id = c.id;
+
+          const downloadBtn = document.createElement("button");
+          downloadBtn.className = "btn small secondary";
+          downloadBtn.textContent = "Download";
+          downloadBtn.dataset.action = "download";
+          downloadBtn.dataset.id = c.id;
+
+          const deleteBtn = document.createElement("button");
+          deleteBtn.className = "btn small danger";
+          deleteBtn.textContent = "Delete";
+          deleteBtn.dataset.action = "delete";
+          deleteBtn.dataset.id = c.id;
+
+          tdActions.appendChild(viewBtn);
+          tdActions.appendChild(downloadBtn);
+          tdActions.appendChild(deleteBtn);
+
+          tdActions.style.display = "flex";
+          tdActions.style.flexWrap = "wrap";
+          tdActions.style.gap = "0.25rem";
+
+          tr.appendChild(tdActions);
+
+          tbody.appendChild(tr);
+        });
+
+        setListMessage(filtered.length + " config(s) shown.");
+      }
+
+      function openEditPanel(config) {
+        const panel = document.getElementById("edit-panel");
+        const meta = document.getElementById("edit-meta");
+        const textarea = document.getElementById("edit-json");
+        const idInput = document.getElementById("edit-id");
+
+        meta.innerHTML = "";
+
+        const items = [
+          ["Type", config.type],
+          ["State", config.state],
+          ["Grade", config.grade],
+          ["Module", config.module],
+          ["Lesson", config.lesson],
+          ["Version", "v" + (config.version || 1)],
+          ["Updated", formatTimestamp(config.updatedAt)],
+        ];
+
+        items.forEach(([label, value]) => {
+          const span = document.createElement("span");
+          span.className = "meta-item";
+          span.innerHTML = "<strong>" + label + ":</strong> " + (value || "");
+          meta.appendChild(span);
+        });
+
+        textarea.value = config.content || "";
+        idInput.value = config.id;
+        setEditMessage(null, "");
+        panel.classList.add("active");
+        textarea.focus();
+      }
+
+      function closeEditPanel() {
+        document.getElementById("edit-panel").classList.remove("active");
+        document.getElementById("edit-json").value = "";
+        document.getElementById("edit-id").value = "";
+        setEditMessage(null, "");
+      }
+
+      function handleTableClick(event) {
+        const btn = event.target.closest("button[data-action]");
+        if (!btn) return;
+
+        const action = btn.dataset.action;
+        const id = btn.dataset.id;
+        const config = configs.find((c) => c.id === id);
+        if (!config) return;
+
+        if (action === "view") {
+          openEditPanel(config);
+        } else if (action === "download") {
+          const blob = new Blob([config.content || ""], {
+            type: "application/json",
+          });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement("a");
+          const safeType = (config.type || "config").replace(/\s+/g, "_");
+          const safeGrade = (config.grade || "").replace(/\s+/g, "_");
+          const safeModule = (config.module || "").replace(/\s+/g, "_");
+          const safeLesson = (config.lesson || "").replace(/\s+/g, "_");
+          a.href = url;
+          a.download = `${safeType}_${safeGrade}_${safeModule}_${safeLesson}_v${
+            config.version || 1
+          }.json`;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+        } else if (action === "delete") {
+          if (!confirm("Delete this config? This cannot be undone.")) return;
+          configs = configs.filter((c) => c.id !== id);
+          saveConfigs();
+          renderTable();
+          const editId = document.getElementById("edit-id").value;
+          if (editId === id) {
+            closeEditPanel();
+          }
+        }
+      }
+
+      function handleSaveEdit() {
+        const id = document.getElementById("edit-id").value;
+        const config = configs.find((c) => c.id === id);
+        if (!config) {
+          setEditMessage(
+            "error",
+            "Config not found (it may have been deleted)."
+          );
+          return;
+        }
+
+        const raw = document.getElementById("edit-json").value.trim();
+        if (!raw) {
+          setEditMessage("error", "JSON content cannot be empty.");
+          return;
+        }
+
+        let parsed;
+        try {
+          parsed = JSON.parse(raw);
+        } catch (e) {
+          setEditMessage("error", "Invalid JSON: " + e.message);
+          return;
+        }
+
+        const pretty = JSON.stringify(parsed, null, 2);
+        config.content = pretty;
+        config.version = (config.version || 1) + 1;
+        config.updatedAt = new Date().toISOString();
+
+        saveConfigs();
+        renderTable();
+        openEditPanel(config); // refresh meta/version
+        setEditMessage(
+          "success",
+          "Config saved as version v" + config.version + "."
+        );
+      }
+
+      function handleExportAll() {
+        if (configs.length === 0) {
+          alert("No configs to export.");
+          return;
+        }
+        const exportObj = {};
+        configs.forEach((c) => {
+          const key = [c.type, c.state, c.grade, c.module, c.lesson].join("|");
+          exportObj[key] = {
+            type: c.type,
+            state: c.state,
+            grade: c.grade,
+            module: c.module,
+            lesson: c.lesson,
+            version: c.version,
+            updatedAt: c.updatedAt,
+            content: c.content ? JSON.parse(c.content) : null,
+          };
+        });
+
+        const blob = new Blob([JSON.stringify(exportObj, null, 2)], {
+          type: "application/json",
+        });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "all-configs.json";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      }
+
+      function handleUploadSubmit(event) {
+        event.preventDefault();
+        setUploadMessage(null, "");
+
+        const type = document.getElementById("type-input").value.trim();
+        const state = document.getElementById("state-input").value.trim();
+        const grade = document.getElementById("grade-input").value.trim();
+        const module = document.getElementById("module-input").value.trim();
+        const lesson = document.getElementById("lesson-input").value.trim();
+        const fileInput = document.getElementById("json-file");
+        const textArea = document.getElementById("json-text");
+
+        if (!type || !state || !grade || !module || !lesson) {
+          setUploadMessage("error", "All categorization fields are required.");
+          return;
+        }
+
+        function processContent(content) {
+          const raw = content.trim();
+          if (!raw) {
+            setUploadMessage("error", "JSON content is empty.");
+            return;
+          }
+
+          let parsed;
+          try {
+            parsed = JSON.parse(raw);
+          } catch (e) {
+            setUploadMessage("error", "Invalid JSON: " + e.message);
+            return;
+          }
+
+          const pretty = JSON.stringify(parsed, null, 2);
+          const now = new Date().toISOString();
+          let existing = findConfigByCategories(
+            type,
+            state,
+            grade,
+            module,
+            lesson
+          );
+
+          if (existing) {
+            existing.content = pretty;
+            existing.version = (existing.version || 1) + 1;
+            existing.updatedAt = now;
+          } else {
+            existing = {
+              id:
+                "cfg-" +
+                Date.now().toString(36) +
+                "-" +
+                Math.random().toString(16).slice(2),
+              type,
+              state,
+              grade,
+              module,
+              lesson,
+              version: 1,
+              createdAt: now,
+              updatedAt: now,
+              content: pretty,
+            };
+            configs.push(existing);
+          }
+
+          saveConfigs();
+          renderTable();
+          updateNextVersionPill();
+          setUploadMessage(
+            "success",
+            `Config saved as version v${existing.version}.`
+          );
+        }
+
+        // Prefer file content over textarea if both are present
+        const file = fileInput.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            processContent(e.target.result || "");
+          };
+          reader.onerror = () => {
+            setUploadMessage("error", "Failed to read file.");
+          };
+          reader.readAsText(file);
+        } else if (textArea.value.trim()) {
+          processContent(textArea.value);
+        } else {
+          setUploadMessage(
+            "error",
+            "Provide JSON by uploading a file or pasting into the text area."
+          );
+        }
+      }
+
+      function clearFilters() {
+        document.getElementById("filter-type").value = "";
+        document.getElementById("filter-state").value = "";
+        document.getElementById("filter-grade").value = "";
+        document.getElementById("filter-module").value = "";
+        document.getElementById("filter-lesson").value = "";
+        renderTable();
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        configs = loadConfigs();
+
+        // Form events
+        document
+          .getElementById("upload-form")
+          .addEventListener("submit", handleUploadSubmit);
+
+        [
+          "type-input",
+          "state-input",
+          "grade-input",
+          "module-input",
+          "lesson-input",
+        ].forEach((id) => {
+          document
+            .getElementById(id)
+            .addEventListener("input", updateNextVersionPill);
+        });
+
+        document
+          .getElementById("clear-form-btn")
+          .addEventListener("click", () => {
+            resetUploadForm();
+            setUploadMessage(null, "");
+          });
+
+        // Table & filters
+        document
+          .getElementById("config-tbody")
+          .addEventListener("click", handleTableClick);
+
+        [
+          "filter-type",
+          "filter-state",
+          "filter-grade",
+          "filter-module",
+          "filter-lesson",
+        ].forEach((id) => {
+          document.getElementById(id).addEventListener("input", renderTable);
+        });
+
+        document
+          .getElementById("clear-filters-btn")
+          .addEventListener("click", clearFilters);
+
+        document
+          .getElementById("export-all-btn")
+          .addEventListener("click", handleExportAll);
+
+        // Edit panel events
+        document
+          .getElementById("save-edit-btn")
+          .addEventListener("click", handleSaveEdit);
+
+        document
+          .getElementById("cancel-edit-btn")
+          .addEventListener("click", closeEditPanel);
+
+        // Initial render
+        renderTable();
+        updateNextVersionPill();
+      });
+    </script>
+  </body>
+</html>
